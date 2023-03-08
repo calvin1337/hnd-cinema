@@ -1,10 +1,16 @@
+// Imports
+
 import Header from "./Header"
+import Navigation from "./Navigation"
+
+// Component allows me to share a common section across multiple pages. Header, Navigation and Footer.
+
 
 const Layout = ({children}) => {
   return(
     <div>
       <Header />
-       <h1>Nav</h1>         
+       <Navigation />      
         {children}
         <h1>Footer</h1>        
     </div>
