@@ -1,5 +1,6 @@
 // Imports
 
+import Footer from "./Footer"
 import Header from "./Header"
 import Navigation from "./Navigation"
 
@@ -9,10 +10,10 @@ import Navigation from "./Navigation"
 const Layout = ({children}) => {
   return(
     <div>
-      <Header />
-       <Navigation />      
+        <Header />
+        <Navigation />      
         {children}
-        <h1>Footer</h1>        
+        <Footer />        
     </div>
   )
 }

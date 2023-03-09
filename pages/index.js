@@ -5,10 +5,9 @@ export default function Home() {
   return (
     <>
   
-      <main>
-      <h1 className="text-3xl font-bold underline">
-      Page Content
-      </h1>
+      <main className="text-center">
+      <div>IMAGE CAROUSEL</div>
+      <div></div>
       </main>
     </>
   )
