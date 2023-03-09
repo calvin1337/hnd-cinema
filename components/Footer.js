@@ -3,7 +3,7 @@
 
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <div className="bg-gray-800">Footer</div>
   )
 }
 

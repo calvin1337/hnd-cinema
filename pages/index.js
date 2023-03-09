@@ -1,12 +1,11 @@
-// import styles from '@/styles/Home.module.css'
+import ImageCarousel from "@/components/home/ImageCarousel";
 
 
 export default function Home() {
   return (
     <>
-  
       <main className="text-center">
-      <div>IMAGE CAROUSEL</div>
+      <ImageCarousel />
       <div></div>
       </main>
     </>
