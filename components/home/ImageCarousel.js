@@ -13,7 +13,7 @@ import "swiper/css/pagination";
 const ImageCarousel = () => {
   return (
     <>
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper h-screen">
+      <Swiper navigation={true} modules={[Navigation]} className="mySwiper h-screen border-green-200-400 border">
         {/* Slide 1 */}
         <SwiperSlide>
           <div className="h-full flex justify-center items-center">
