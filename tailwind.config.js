@@ -11,4 +11,11 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+ 
+    theme: {
+      container: {
+        center: true,
+      },
+    },
+  
 }
