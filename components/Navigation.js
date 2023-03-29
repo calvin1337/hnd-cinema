@@ -23,17 +23,17 @@ const setActive = (active) => {
         {/* Link container */}
         <div className="flex items-center justify-between py-3 md:py-5 md:block">
           <ul className="items-center justify-center md:flex">
-            <li className={activeLink === "home" ? "py-2 md:px-6 bg-gray-900 text-white rounded-md mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md mx-2"} onClick={() => setActive("home")}>
-              <Link exact href="/">Home</Link>
+            <li>
+              <Link className={activeLink === "home" ? "py-2 md:px-6 bg-gray-900 text-white rounded-md mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md mx-2"} onClick={() => setActive("home")} exact href="/">Home</Link>
             </li>
-            <li className={activeLink === "about" ? "py-2 md:px-6 bg-gray-900 text-white rounded-md mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md mx-2"} onClick={() => setActive("about")}>
-              <Link exact href="/about">About</Link>
+            <li >
+              <Link className={activeLink === "about" ? "py-2 md:px-6 bg-gray-900 text-white rounded-md mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md mx-2"} onClick={() => setActive("about")} exact href="/about">About</Link>
             </li>
-            <li className={activeLink === "whatson" ? "py-2 md:px-6 bg-gray-900 text-white rounded-md mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md mx-2"} onClick={() => setActive("whatson")}>
-              <Link exact href="/whatson">What&apos;s On</Link>
+            <li >
+              <Link className={activeLink === "whatson" ? "py-2 md:px-6 bg-gray-900 text-white rounded-md mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md mx-2"} onClick={() => setActive("whatson")}exact href="/whatson">What&apos;s On</Link>
             </li>
-            <li className={activeLink === "comingsoon" ? "py-2 md:px-6 bg-gray-900 text-white rounded-md mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md mx-2"} onClick={() => setActive("comingsoon")}>
-              <Link exact href="/comingsoon">Coming Soon</Link>
+            <li >
+              <Link className={activeLink === "comingsoon" ? "py-2 md:px-6 bg-gray-900 text-white rounded-md mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md mx-2"} onClick={() => setActive("comingsoon")} exact href="/comingsoon">Coming Soon</Link>
             </li>
             
           </ul>
