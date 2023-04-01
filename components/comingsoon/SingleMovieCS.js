@@ -1,19 +1,21 @@
+import InformationCS from "./InformationCS";
+import RatingCS from "./RatingCS";
 
 
 const SingleMovieCS = () => {
   return (
-    <div class="grid grid-cols-4 grid-rows-3 mt-5 mb-5">
-      <div class="row-span-1 col-span-4 border-red-400 border ">
-        <h2>Movie Title</h2>
+    <div className="grid grid-cols-4 grid-rows-auto mt-5 mb-5 ">
+      <div className="row-span-1 col-span-4 border-red-400 border flex align-middle justify-center">
+        <h2 className="mt-5 mb-5">Movie Title</h2>
       </div>
-      <div class="row-span-2 col-span-1 border-blue-50-400 border ">
-        <h3>Rating</h3>
+      <div className="row-span-2 col-span-1 border-blue-50-400 border">
+        <RatingCS />
       </div>
-      <div class="row-span-1 col-span-3 border-cyan-400 border ">
-        <h3>Trailer</h3>
+      <div className="row-span-1 col-span-3 border-cyan-400 border flex align-middle justify-center">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/AHmCH7iB_IM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
-      <div class="row-span-1 col-span-3 border-gray-50-400 border ">
-        <h3>Information</h3>
+      <div className="row-span-1 col-span-3 border-gray-50-400 border ">
+        <InformationCS />
       </div>
     </div>
   );
