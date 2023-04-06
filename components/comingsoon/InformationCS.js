@@ -9,8 +9,8 @@ const InformationCS = () => {
           alt=""
         />
       </div>
-      <div className="content-container flex justify-center flex-col">
-        <div className="notification-container text-right m-5 ">
+      <div className="content-container flex justify-center flex-col pb-5">
+        <div className="notification-container text-right m-5">
           <button className="btn">Notify me</button>
         </div>
         <h3>Name: Creed III</h3>
@@ -20,6 +20,12 @@ const InformationCS = () => {
           ullam dolorem.
         </h3>
         <h3>Release Date: 3rd March 2023</h3>
+        <div className="w-4/5 border-red-500 h-12 border mt-5">
+            <h3 className="absolute p-2"><strong>Excitment Meter</strong></h3>
+          <div className="w-3/6 bg-green-500 h-full">
+            
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,7 @@
 import SingleMovieCS from "@/components/comingsoon/SingleMovieCS";
 
+// add sort by
+// 
 
 const comingsoon = () => {
   return (
@@ -11,9 +13,12 @@ const comingsoon = () => {
       <div class="title-container text-center">
         <h1>Coming Soon</h1>
       </div>
+      <div className="flex flex-col items-center">
       <SingleMovieCS />
       <SingleMovieCS />
       <SingleMovieCS />
+      </div>
+      
     </div>
   );
 };
