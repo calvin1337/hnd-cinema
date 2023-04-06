@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 
-export default function Navigation() {
+export default function Navigation(props) {
   
  const [activeLink, setActiveLink] = useState("home");
  
@@ -45,10 +45,10 @@ const setActive = (active) => {
         {/* Login container */}
         <div className="flex items-center justify-between py-3 md:py-5 md:block">
           <ul className="items-center justify-center gap-4 md:flex">
-            <li className="py-2 md:px-6 text-center border-2 border-neutral-900 hover:cursor-pointer">
+            <li onClick={() => props.toggle("login")} className="py-2 md:px-6 text-center border-2 border-neutral-900 hover:cursor-pointer">
               Login
             </li>
-            <li  className="py-2 md:px-6 text-center border-2  border-neutral-900 hover:cursor-pointer">
+            <li onClick={() => props.toggle("reg")} className="py-2 md:px-6 text-center border-2  border-neutral-900 hover:cursor-pointer">
               Register
             </li>
           </ul>

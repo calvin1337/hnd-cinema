@@ -3,14 +3,17 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 
 
-const Modal = ({ children,  }) => {
+const Modal = (props) => {
+  const { children, display, show, toggle } = props;
+
   return (
-    <div className="modal">
+    <div className="modal" style={{display: show ? '' : 'none' }}>
       <div className="modal-content">
-        <button class="closeBtn">
+        <button onClick={() => toggle("")} class="closeBtn">
           <FontAwesomeIcon icon={faTimes} size="2xl" color="black" />
         </button>
-        {children}
+        {display === "login" && <h1>login</h1>}
+        {display === "reg" && <h1>reg</h1>}
       </div>
     </div>
   );

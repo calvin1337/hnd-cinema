@@ -16,24 +16,21 @@ config.autoAddCss = false; /* eslint-disable import/first */
 
 
 const Layout = ({children}) => {
-  const [showLogin, setShowLogin] = useState(false);
-const [showRegister, setShowRegister] = useState(false);
 
-const toggleLogin = () => {
-  setShowLogin(!showLogin);
+const [showModal, setShowModal] = useState(false);
+const [activeModal, setActiveModal] = useState("login");
+
+const toggleModal = (e) => {
+    setShowModal(!showModal);
+    setActiveModal(e);
 }
 
-const toggleRegister = () => {
-setShowRegister(!showRegister);
-}
 
   return(
     <div>
         <Header />
-        <Modal>
-          <h1>Test</h1>
-        </Modal>
-        <Navigation />      
+        <Modal display={activeModal} show={showModal} toggle={toggleModal}/>
+        <Navigation toggle={toggleModal} />      
         {children}
         <Footer />        
     </div>
