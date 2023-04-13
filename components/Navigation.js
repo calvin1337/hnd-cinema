@@ -19,12 +19,12 @@ const setActive = (active) => {
       {/* Main container*/}
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8 text-white">
         {/* Logo container */}
-        <div className="flex items-center justify-between py-3 md:py-5 md:block ">
+        <div className="flex items-start py-3 md:py-5 md:block w-1/4">
          LOGO
         </div>
         {/* Link container */}
-        <div className="flex items-center justify-between py-3 md:py-5 md:block">
-          <ul className="items-center justify-center md:flex">
+        <div className="flex items-center py-3 md:py-5 md:block w-full">
+          <ul className="justify-center md:flex">
             <li>
               <Link className={activeLink === "home" ? "py-2 md:px-6 bg-neutral-900 text-white rounded-md mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-neutral-700 hover:text-white rounded-md mx-2"} onClick={() => setActive("home")} exact href="/">Home</Link>
             </li>
@@ -43,7 +43,7 @@ const setActive = (active) => {
 
 
         {/* Login container */}
-        <div className="flex items-center justify-between py-3 md:py-5 md:block">
+        <div className="flex items-end justify-between py-3 md:py-5 md:block w-1/4">
           <ul className="items-center justify-center gap-4 md:flex">
             <li onClick={() => props.toggle("login")} className="py-2 md:px-6 text-center border-2 border-neutral-900 hover:cursor-pointer">
               Login
