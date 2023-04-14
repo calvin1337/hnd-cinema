@@ -1,8 +1,19 @@
-
+import { useState } from "react"
 import DatePicker from "@/components/booking/DatePicker"
 import MovieCard from "@/components/booking/MovieCard"
 
 const Whatson = () => {
+
+  const [day, setDay] = useState(new Date().getDay())
+  const [active, setActive] = useState(0);
+
+  console.log(day)
+
+
+  const daySelected = (e) => {
+    console.log(e)
+    setActive(e)
+  }
 
   return(
   
@@ -14,8 +25,9 @@ const Whatson = () => {
       <div class="title-container text-center">
         <h1>Whats on</h1>
       </div>
-      <DatePicker />
+      <DatePicker selectDay={(e) => daySelected(e)} active={active} day={day}/>
       <div className="flex flex-col items-center">
+        {/* Display them depending on day selected, render on today */}
         <MovieCard />
         <MovieCard />
         <MovieCard />
