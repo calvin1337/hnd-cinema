@@ -1,13 +1,15 @@
 import { useState } from "react"
 import DatePicker from "@/components/booking/DatePicker"
 import MovieCard from "@/components/booking/MovieCard"
+import useFetchMovies from "@/hooks/fetchMovies"
 
 const Whatson = () => {
-
+  const { loading, error, movies } = useFetchMovies();
+  console.log(movies, error)
   const [day, setDay] = useState(new Date().getDay())
   const [active, setActive] = useState(0);
 
-  console.log(day)
+  
 
 
   const daySelected = (e) => {
