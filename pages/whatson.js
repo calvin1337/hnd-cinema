@@ -6,6 +6,7 @@ import useFetchMovies from "@/hooks/fetchMovies"
 const Whatson = () => {
   const { loading, error, movies } = useFetchMovies();
   console.log(movies, error)
+  
   const [day, setDay] = useState(new Date().getDay())
   const [active, setActive] = useState(0);
 

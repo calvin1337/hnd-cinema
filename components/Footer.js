@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className="border-red-400 border mt-10">
-      <div className="grid grid-cols-4 grid-rows-1 lg:container gap-x-5 ">
+      <div className="grid grid-cols-4 grid-rows-1 lg:container gap-x-5 p-5">
       <div class="col-span-2">
         <h6>About this project</h6>
         <p>
@@ -31,7 +31,7 @@ const Footer = () => {
       </div>
 
       <hr />
-      
+      <h1 className="px-2 text-right">Calvin Donaldson</h1>
     </footer>
   );
 };
