@@ -21,7 +21,7 @@ const getMovieList = async () => {
     const data = await getDocs(moviesCollectionRef);
     const filteredData = data.docs.map((doc) => ({
       ...doc.data(),
-      id: doc.title,
+      id: doc.id,
     }));
     setMovies(filteredData);
     setLoading(false);

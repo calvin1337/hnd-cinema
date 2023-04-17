@@ -9,7 +9,7 @@ const SingleMovieCS = (props) => {
         <h1 className="mt-5 mb-5">{props.title}</h1>
       </div>
       <div className="row-span-2 col-span-1 ">
-        <RatingCS />
+        <RatingCS id={props.id} />
       </div>
   
       <div className="row-span-1 col-span-3  ">

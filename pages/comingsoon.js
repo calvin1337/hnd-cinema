@@ -31,6 +31,7 @@ const Comingsoon = () => {
             release={movie.release}
             desc={movie.desc}
             rating={movie.rating}
+            id={movie.id}
           />
         ))}
       </>
