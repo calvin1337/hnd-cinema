@@ -4,7 +4,9 @@ import { getDocs } from 'firebase/firestore'
 
 import { db } from '@/firebase'
 
-const useFetchMovies = () => {
+
+
+export const useFetchMovies = () => {
 
 const [loading, setLoading] = useState(true)
 const [error, setError] = useState(null)
@@ -19,9 +21,10 @@ const getMovieList = async () => {
     const data = await getDocs(moviesCollectionRef);
     const filteredData = data.docs.map((doc) => ({
       ...doc.data(),
-      id: doc.title,
+      id: doc.id,
     }));
     setMovies(filteredData);
+    setLoading(false);
   } catch (err) {
     console.error(err);
   }
@@ -34,6 +37,34 @@ useEffect(() => {
 return { loading, error, movies }
 }
 
-export default useFetchMovies
+
+export const useFetchComingSoon = () => {
+const [loading, setLoading] = useState(true)
+const [error, setError] = useState(null)
+const [movies, setMovies] = useState(null)
+
+const moviesCollectionRef = collection(db, "comingsoon");
+
+const getComingSoon = async () => {
+  try {
+    const data = await getDocs(moviesCollectionRef);
+    const filteredData = data.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id
+    }));
+    setMovies(filteredData);
+    setLoading(false);
+  } catch (err) {
+    console.error(err);
+  }
+}
+useEffect(() => {
+  getComingSoon();
+}, []);
+
+return { loading, error, movies }
+}
+
+
 
 
