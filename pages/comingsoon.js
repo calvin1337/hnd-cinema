@@ -1,13 +1,46 @@
 import SingleMovieCS from "@/components/comingsoon/SingleMovieCS";
-import { useFetchComingSoon } from "@/hooks/fetchMovies";
-
+import {useState, useEffect} from "react";
+import { db } from '@/firebase'
+import { collection } from 'firebase/firestore'
+import { getDocs } from 'firebase/firestore'
 
 
 
 const Comingsoon = () => {
 
-  const { loading, error, movies } = useFetchComingSoon();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const moviesCollectionRef = collection(db, "comingsoon");
 
+  const getComingSoon = async () => {
+    try {
+      const data = await getDocs(moviesCollectionRef);
+      const filteredData = data.docs.map((doc) => {
+        const totalVotes = doc.data().total_votes;
+        const upvotes = doc.data().upvotes;
+        const rating = (totalVotes && upvotes) ? (upvotes / totalVotes) * 100 : 0;
+  
+        return {
+          ...doc.data(),
+          id: doc.id,
+          rating: rating
+        };
+      });
+      setData(filteredData);
+      setLoading(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  
+  useEffect(() => {
+    getComingSoon();
+  }, []);
+
+
+  const handleUpdate = () => {
+    getComingSoon();
+  }
   
   return (
     <div className="text-white">
@@ -23,7 +56,7 @@ const Comingsoon = () => {
       <p>Loading...</p>
     ) : (
         <>
-        {movies.map((movie) => (
+        {data.map((movie) => (
           <SingleMovieCS 
             key={movie.id}
             title={movie.title}
@@ -32,6 +65,7 @@ const Comingsoon = () => {
             desc={movie.desc}
             rating={movie.rating}
             id={movie.id}
+            updateRating={handleUpdate}
           />
         ))}
       </>

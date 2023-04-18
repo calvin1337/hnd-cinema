@@ -21,7 +21,7 @@ const getMovieList = async () => {
     const data = await getDocs(moviesCollectionRef);
     const filteredData = data.docs.map((doc) => ({
       ...doc.data(),
-      id: doc.id,
+      id: doc.id
     }));
     setMovies(filteredData);
     setLoading(false);
@@ -48,22 +48,33 @@ const moviesCollectionRef = collection(db, "comingsoon");
 const getComingSoon = async () => {
   try {
     const data = await getDocs(moviesCollectionRef);
-    const filteredData = data.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id
-    }));
+    const filteredData = data.docs.map((doc) => {
+      const totalVotes = doc.data().total_votes;
+      const upvotes = doc.data().upvotes;
+      const rating = (totalVotes && upvotes) ? (upvotes / totalVotes) * 100 : 0;
+
+      return {
+        ...doc.data(),
+        id: doc.id,
+        rating: rating
+      };
+    });
     setMovies(filteredData);
     setLoading(false);
+    console.log(filteredData);
   } catch (err) {
     console.error(err);
   }
-}
+};
+
 useEffect(() => {
   getComingSoon();
 }, []);
 
-return { loading, error, movies }
-}
+
+
+return { loading, error, movies };
+};
 
 
 

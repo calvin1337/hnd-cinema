@@ -17,8 +17,10 @@ const RatingCS = (props) => {
     const itemDoc = await getDoc(itemRef);
   
     if (itemDoc.exists()) {
-      const currentRating = itemDoc.data().rating;
-      await updateDoc(itemRef, { rating: currentRating + 1 });
+      const currentVotes = itemDoc.data().total_votes;
+      const currentUpvotes = itemDoc.data().upvotes;
+      await updateDoc(itemRef, { upvotes: currentUpvotes + 1 });
+      await updateDoc(itemRef, { total_votes: currentVotes + 1 });
       console.log(itemDoc)
     } else {
       console.log("No such document!");
@@ -29,6 +31,7 @@ const RatingCS = (props) => {
 
   const upvote = (id) => {
    updateRating(id)
+   props.updateRating()
   }
 
   const downvote = () => {
@@ -37,7 +40,7 @@ const RatingCS = (props) => {
   
   return (
     <div class="flex items-center justify-around flex-col h-full">
-        <FontAwesomeIcon className="hover:cursor-pointer" onClick={() => updateRating(props.id)} icon={faAngleUp} size={"2xl"}/>
+        <FontAwesomeIcon className="hover:cursor-pointer" onClick={() => upvote(props.id)} icon={faAngleUp} size={"2xl"}/>
         <h3>Rating</h3>
         <FontAwesomeIcon className="hover:cursor-pointer" onClick={downvote} icon={faChevronDown} size={"2xl"} />
     </div>
