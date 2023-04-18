@@ -26,6 +26,7 @@ const Comingsoon = () => {
           rating: rating
         };
       });
+      sortedData = filteredData.sort((a, b) => b.rating - a.rating);
       setData(filteredData);
       setLoading(false);
     } catch (err) {
