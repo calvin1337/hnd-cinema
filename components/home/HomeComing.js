@@ -5,7 +5,7 @@ const HomeComing = () => {
   return (
     <div>
        <div className="pt-10 pb-10">
-      <h1 className="text-white border-cyan-400 border text-left p-10">Now Showing</h1>
+      <h1 className="text-white  text-left p-10">Now Showing</h1>
       <div className="container m-auto grid grid-cols-3 gap-4">
         <HomeMovieCard 
         title={"Guardians of the Galaxy Vol. 3"}

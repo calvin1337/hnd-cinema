@@ -2,7 +2,7 @@
 
 const HomeMovieCard = ({url, title}) => {
   return (
-    <div className="border border-y-cyan-100 ">
+    <div>
       {/* Card Container */}
       <div className="shadow-md cursor-pointer relative h-96 bg-cover bg-no-repeat bg-center rounded-lg" style={{ 
       backgroundImage: `url(${url})` 

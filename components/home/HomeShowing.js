@@ -3,7 +3,7 @@ import HomeMovieCard from "./HomeMovieCard"
 const HomeShowing = () => {
   return (
     <div className="pt-10 pb-10">
-      <h1 className="text-white border-cyan-400 border text-left p-10">What&apos;s On</h1>
+      <h1 className="text-white  text-left p-10">What&apos;s On</h1>
       <div className="container m-auto grid grid-cols-3 gap-4">
         <HomeMovieCard 
         title={"Batman"}
