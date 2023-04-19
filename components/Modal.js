@@ -22,7 +22,7 @@ const Modal = (props) => {
   return (
     <div className="modal" style={{display: show ? '' : 'none' }} ref={modalRef}>
       <div className="modal-content" >
-        <button onClick={() => toggle("")} class="closeBtn">
+        <button onClick={() => toggle("")} className="closeBtn">
           <FontAwesomeIcon icon={faTimes} size="2xl" color="black" />
         </button>
         {display === "login" && <h1>login</h1>}

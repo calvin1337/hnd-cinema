@@ -8,11 +8,11 @@ const HomeMovieCard = ({url, title}) => {
       backgroundImage: `url(${url})` 
     }}>
         {/* Card Content */}
-        <div class="h-full w-full rounded-lg" style={{ backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent` }}>
+        <div className="h-full w-full rounded-lg" style={{ backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent` }}>
           {/* Items */}
-          <div class="bottom-0 flex flex-col m-5 absolute right-0 text-right ">
-            <span class="text-3xl text-indigo-50">{title}</span>
-            <span class="text-blue-500">Book Now</span>
+          <div className="bottom-0 flex flex-col m-5 absolute right-0 text-right ">
+            <span className="text-3xl text-indigo-50">{title}</span>
+            <span className="text-blue-500">Book Now</span>
           </div>
         </div>
       </div>

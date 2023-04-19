@@ -13,3 +13,4 @@ Maybe put day picker and links to showings in own component
 
 Responsiveness 
 
+Allow one vote per account

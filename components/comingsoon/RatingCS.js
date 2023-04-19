@@ -41,7 +41,7 @@ const RatingCS = (props) => {
 }
   
   return (
-    <div class="flex items-center justify-around flex-col h-full">
+    <div className="flex items-center justify-around flex-col h-full">
         <FontAwesomeIcon className="hover:cursor-pointer" onClick={() => upvote(props.id)} icon={faAngleUp} size={"2xl"}/>
         <h3>Rating</h3>
         <FontAwesomeIcon className="hover:cursor-pointer" onClick={() => downvote(props.id)} icon={faChevronDown} size={"2xl"} />
