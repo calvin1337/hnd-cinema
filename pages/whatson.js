@@ -10,9 +10,10 @@ const Whatson = () => {
 
 
   const [day, setDay] = useState(new Date().getDay())
+  
   const [active, setActive] = useState(0);
   const [showings, setShowings] = useState([]);
-
+  const [loading, setLoading] = useState(true);
 
   // const getShowings = async () => {
   //   const querySnapshot = await getDocs(collectionGroup(db, "showings"));
@@ -33,7 +34,6 @@ const Whatson = () => {
   const getShowings = async () => {
     const querySnapshot = await getDocs(collectionGroup(db, "showings"));
     const showingsData = {};
-  
     // Create a map of movie IDs to movie data for all movies in the "movies" collection
     const moviesSnapshot = await getDocs(collection(db, "movies"));
     const moviesData = {};
@@ -51,6 +51,15 @@ const Whatson = () => {
         showingsData[movieId] = { movieData, showings: [] };
       }
       showingsData[movieId].showings.push({ ...doc.data(), id: doc.id });
+
+      // Filter showings by selected day
+      Object.keys(showingsData).forEach((movieId) => {
+        const movieShowings = showingsData[movieId].showings;
+        // Currently hardcoded to Monday
+        const filteredShowings = movieShowings.filter((showing) => showing.day === "Monday");
+        showingsData[movieId].showings = filteredShowings;
+      });
+  
     });
   
     setShowings(Object.values(showingsData));
@@ -81,13 +90,14 @@ const Whatson = () => {
       {showings.map((movieShowings) => (
   <div key={movieShowings.movieData.id}>
     <h2>{movieShowings.movieData.title}</h2>
-    <ul>
-      {movieShowings.showings.map((showing) => (
-        <li key={showing.id}>
-          {showing.id}
-        </li>
+    {movieShowings.showings
+      .sort((a, b) => a.day.localeCompare(b.day))
+      .map((showing) => (
+        <div key={showing.id}>
+          <p>{showing.day}</p>
+          <p>{showing.id}</p>
+        </div>
       ))}
-    </ul>
   </div>
 ))}
       </div>
