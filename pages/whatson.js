@@ -50,7 +50,7 @@ const Whatson = () => {
       if (!showingsData[movieId]) {
         showingsData[movieId] = { movieData, showings: [] };
       }
-      showingsData[movieId].showings.push({ ...doc.data(), id: doc.id });
+      showingsData[movieId].showings.push({ ...doc.data(), id: doc.id, slug:doc.id });
 
       // Filter showings by selected day
       Object.keys(showingsData).forEach((movieId) => {
