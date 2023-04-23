@@ -1,3 +1,4 @@
+import Seats from '@/components/booking/Seats'
 import React from 'react'
 
 const BookingPage = () => {
@@ -5,7 +6,7 @@ const BookingPage = () => {
     <>
   <div className="text-center w-full flex flex-col items-center" style={{perspective:"1000px"}}>
     {/* Booking Info */}
-    <div className=" mt-10">
+    <div className="mt-10">
       <h2>Booking Info</h2>
       <h3>Creed III</h3>
       <h3>Screen: 4</h3>
@@ -16,11 +17,7 @@ const BookingPage = () => {
     <div className="screen w-1/4 h-20 bg-white transform mt-5" style={{transform: "rotateX(-45deg)"}}></div>
 
     {/* Component? */}
-    <div className="seats-container w-1/4 bg-gray-500">
-      <div className="row">
-        <div className="seat h-40 ">Seats</div>
-      </div>
-    </div>
+    <Seats/>
 
     <div className="user-booking">
     <h3>Seats selected: A1, A2</h3>
