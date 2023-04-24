@@ -10,7 +10,6 @@ const Whatson = () => {
 
 
   const [day, setDay] = useState(new Date().getDay())
-  
   const [active, setActive] = useState(0);
   const [showings, setShowings] = useState([]);
   const [loading, setLoading] = useState(true);
