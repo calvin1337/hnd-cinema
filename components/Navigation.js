@@ -13,7 +13,7 @@ const setActive = (active) => {
  }
 
 
-
+// COULD ADD ALWAYS AT TOP OF PAGE ON SCROLLING
   return (
     <nav style={{background:"#222"}}>
       {/* Main container*/}
