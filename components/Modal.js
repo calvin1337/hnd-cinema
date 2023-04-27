@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useEffect } from "react";
+import Form from "./Form";
 
 
 const Modal = (props) => {
@@ -25,7 +26,7 @@ const Modal = (props) => {
         <button onClick={() => toggle("")} className="closeBtn">
           <FontAwesomeIcon icon={faTimes} size="2xl" color="black" />
         </button>
-        {display === "login" && <h1>login</h1>}
+        {display === "login" && <Form />}
         {display === "reg" && <h1>reg</h1>}
       </div>
     </div>
