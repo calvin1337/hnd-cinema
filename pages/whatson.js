@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import DatePicker from "@/components/booking/DatePicker"
 import MovieCard from "@/components/booking/MovieCard"
-import { collection, query, getDocs, collectionGroup, orderBy, getDoc } from "firebase/firestore"
+import { collection, getDocs, collectionGroup } from "firebase/firestore"
 import { db } from "@/firebase"
 
 
@@ -57,6 +57,7 @@ const Whatson = () => {
         // Currently hardcoded to Monday
         const filteredShowings = movieShowings.filter((showing) => showing.day === "Monday");
         showingsData[movieId].showings = filteredShowings;
+        setLoading(false);
       });
   
     });
@@ -86,19 +87,26 @@ const Whatson = () => {
         <h1>Whats on</h1>
       </div>
       <div>
-      {showings.map((movieShowings) => (
-  <div key={movieShowings.movieData.id}>
-    <h2>{movieShowings.movieData.title}</h2>
-    {movieShowings.showings
-      .sort((a, b) => a.day.localeCompare(b.day))
-      .map((showing) => (
-        <div key={showing.id}>
-          <p>{showing.day}</p>
-          <p>{showing.id}</p>
-        </div>
-      ))}
-  </div>
-))}
+
+      {loading ? (
+  <p>Loading...</p>
+) : (
+  <>
+    {showings.map((movieShowings) => (
+      <div key={movieShowings.movieData.id}>
+        <h2>{movieShowings.movieData.title}</h2>
+        {movieShowings.showings
+          .sort((a, b) => a.day.localeCompare(b.day))
+          .map((showing) => (
+            <div key={showing.id}>
+              <p>{showing.day}</p>
+              <p>{showing.id}</p>
+            </div>
+          ))}
+      </div>
+    ))}
+  </>
+)}
       </div>
       <DatePicker selectDay={(e) => daySelected(e)} active={active} day={day}/>
       <div className="flex flex-col items-center">
