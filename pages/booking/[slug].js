@@ -1,7 +1,52 @@
 import Seats from '@/components/booking/Seats'
-import React from 'react'
+
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import {doc, getDoc} from "firebase/firestore";
+import {db} from  "../../firebase"
+
+
 
 const BookingPage = () => {
+
+  const router = useRouter();
+  const { slug } = router.query;
+  const [showing, setShowing] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchShowing = async () => {
+      try {
+        const docRef = doc(db, 'showings', slug);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const showingData = docSnap.data();
+          const movieDocRef = doc(db, 'movies', showingData.movie_id);
+          const movieDocSnap = await getDoc(movieDocRef);
+          if (movieDocSnap.exists()) {
+            const movieData = movieDocSnap.data();
+            setShowing({ ...showingData, ...movieData });            
+            setLoading(false);
+          } else {
+            throw new Error('Movie not found');
+          }
+        } else {
+          throw new Error('Document not found');
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    if (slug) {
+      fetchShowing();
+    }
+  }, [slug]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  
   
   return (
     <>
@@ -9,9 +54,9 @@ const BookingPage = () => {
     {/* Booking Info */}
     <div className="mt-10">
       <h2>Booking Info</h2>
-      <h3>Creed III</h3>
+      <h3>{showing.title}</h3>
       <h3>Screen: 4</h3>
-      <h3>Time: 16:20</h3>
+      <h3>Time: {showing.time}</h3>
     </div>
     
     {/* Screen */}

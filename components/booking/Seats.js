@@ -16,7 +16,6 @@ const Seats = () => {
 
 
 
-console.log(seatsArray)
 
 
   return (
