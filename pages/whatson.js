@@ -88,32 +88,25 @@ const Whatson = () => {
       </div>
       <div>
 
-      {loading ? (
-  <p>Loading...</p>
-) : (
-  <>
-    {showings.map((movieShowings) => (
-      <div key={movieShowings.movieData.id}>
-        <h2>{movieShowings.movieData.title}</h2>
-        {movieShowings.showings
-          .sort((a, b) => a.day.localeCompare(b.day))
-          .map((showing) => (
-            <div key={showing.id}>
-              <p>{showing.day}</p>
-              <p>{showing.id}</p>
-            </div>
-          ))}
-      </div>
-    ))}
-  </>
-)}
+    
       </div>
       <DatePicker selectDay={(e) => daySelected(e)} active={active} day={day}/>
       <div className="flex flex-col items-center">
         {/* Display them depending on day selected, render on today */}
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
+
+        {loading ? (
+  <p>Loading...</p>
+) : (
+  <>
+    {showings.map((movieShowings) => (
+      <MovieCard 
+        key={movieShowings.movieData.id} 
+        movieTitle={movieShowings.movieData.title} 
+        showings={movieShowings.showings.sort((a, b) => a.day.localeCompare(b.day))}
+      />
+    ))}
+  </>
+)}
       </div>      
     </div>
   )

@@ -2,6 +2,7 @@ import Seats from '@/components/booking/Seats'
 import React from 'react'
 
 const BookingPage = () => {
+  
   return (
     <>
   <div className="text-center w-full flex flex-col items-center" style={{perspective:"1000px"}}>
