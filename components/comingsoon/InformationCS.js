@@ -19,7 +19,7 @@ const InformationCS = (props) => {
         </h3>
         <h3>Release Date: 3rd March 2023</h3>
         <div className="w-4/5 border-red-500 h-12 border mt-5">
-            <h3 className="absolute p-2"><strong>Excitement Meter</strong></h3>
+            <h3 className="absolute p-2"><strong>Excitement Meter {props.rating} %</strong></h3>
           <div className="bg-green-500 h-full" style={{width:`${props.rating}%`}}>
           </div>
         </div>
