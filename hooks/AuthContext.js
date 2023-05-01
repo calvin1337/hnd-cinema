@@ -1,6 +1,6 @@
 import { auth } from '../firebase';
 import { useState } from 'react';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 
 function useAuth() {
   const [user, setUser] = useState(null);
@@ -17,7 +17,17 @@ function useAuth() {
     }
   };
 
-  return { user, error, signIn };
+  const signUp = async (email, password) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      setUser(userCredential.user);
+    } catch (error) {
+      setError(error.message);
+      console.log(error.message);
+    }
+  }
+
+  return { user, error, signIn, signUp };
 }
 
 export default useAuth;
