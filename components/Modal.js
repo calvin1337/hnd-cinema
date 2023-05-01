@@ -27,8 +27,8 @@ const Modal = (props) => {
         <button onClick={() => toggle("")} className="closeBtn">
           <FontAwesomeIcon icon={faTimes} size="2xl" color="black" />
         </button>
-        {display === "login" && <SignInForm />}
-        {display === "reg" && <SignUpForm />}
+        {display === "login" && <SignInForm toggle={toggle} />}
+        {display === "reg" && <SignUpForm toggle={toggle} />}
       </div>
     </div>
   );

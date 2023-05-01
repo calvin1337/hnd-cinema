@@ -1,12 +1,16 @@
 import Link from "next/link";
 import { useState } from "react";
+import  useAuth  from "@/hooks/AuthContext";
+import { AuthContext } from '@/hooks/AuthContext';
+import React from "react";
 
 
 export default function Navigation(props) {
   
  const [activeLink, setActiveLink] = useState("home");
  
-
+ const { user } = React.useContext(AuthContext);
+ const { signOut } = useAuth()
 
 const setActive = (active) => {
     setActiveLink(active);
@@ -44,15 +48,24 @@ const setActive = (active) => {
 
         {/* Login container */}
         <div className="flex items-end justify-between py-3 md:py-5 md:block w-1/4">
-          <ul className="items-center justify-center gap-4 md:flex">
-            <li onClick={() => props.toggle("login")} className="py-2 md:px-6 text-center border-2 border-neutral-900 hover:cursor-pointer">
-              Login
-            </li>
-            <li onClick={() => props.toggle("reg")} className="py-2 md:px-6 text-center border-2  border-neutral-900 hover:cursor-pointer">
-              Register
-            </li>
-          </ul>
+      {user ? (
+        <div className="flex items-center gap-4">
+          <h3 className="text-white">{user.email}</h3>
+          <button onClick={signOut} className="py-2 md:px-6 text-center border-2 border-neutral-900 hover:cursor-pointer">
+            Logout
+          </button>
         </div>
+      ) : (
+        <ul className="items-center justify-center gap-4 md:flex">
+          <li onClick={() => props.toggle("login")} className="py-2 md:px-6 text-center border-2 border-neutral-900 hover:cursor-pointer">
+            Login
+          </li>
+          <li onClick={() => props.toggle("reg")} className="py-2 md:px-6 text-center border-2  border-neutral-900 hover:cursor-pointer">
+            Register
+          </li>
+        </ul>
+      )}
+    </div>
       </div>
      
     </nav>

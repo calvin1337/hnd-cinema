@@ -1,7 +1,7 @@
 import useAuth from "../hooks/AuthContext"
 import { useState } from 'react';
 
-const SignUpForm = () => {
+const SignUpForm = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -10,6 +10,7 @@ const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     signUp(email, password);
+    props.toggle()
   };
 
   return (

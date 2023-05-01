@@ -30,11 +30,22 @@ function useAuth() {
       setError(error.message);
       console.log(error.message);
     }
+
+  }
+
+  const signOut = async () => {
+    try {
+      await auth.signOut();
+      setUser(null);
+    } catch (error) {
+      setError(error.message);
+      console.log(error.message);
+    }
   }
 
 
 
-  return { user, error, signIn, signUp };
+  return { user, error, signIn, signUp, signOut };
 }
 
 export default useAuth;

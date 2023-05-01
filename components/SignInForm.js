@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 
 
-const SignInForm = () => {
+const SignInForm = (props) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,7 +13,7 @@ const SignInForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     signIn(email, password);
-    
+    props.toggle("")
   };
 
   return (
