@@ -1,6 +1,11 @@
 import { auth } from '../firebase';
 import { useState } from 'react';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import React from 'react';
+
+export const AuthContext = React.createContext({});
+
+export const useAuthContext = () => React.useContext(AuthContext);
 
 function useAuth() {
   const [user, setUser] = useState(null);
@@ -27,7 +32,34 @@ function useAuth() {
     }
   }
 
+
+
   return { user, error, signIn, signUp };
 }
 
 export default useAuth;
+
+export const AuthContextProvider = ({
+  children,
+}) => {
+  const [user, setUser] = React.useState(null);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+          if (user) {
+              setUser(user);
+          } else {
+              setUser(null);
+          }
+          setLoading(false);
+      });
+
+      return () => unsubscribe();
+  }, []);
+
+  return (
+      <AuthContext.Provider value={{ user }}>
+          {loading ? <div>Loading...</div> : children}
+      </AuthContext.Provider>
+  )};

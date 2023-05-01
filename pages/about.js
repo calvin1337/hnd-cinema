@@ -1,12 +1,17 @@
 
+import React from 'react';
+import { AuthContext } from '@/hooks/AuthContext';
 
-const about = () => {
+
+const About = () => {
+  
+  const { user } = React.useContext(AuthContext);
+
   return (
-    <main>
-      <h1>About</h1>
-      
-    </main>
-  )
+    <div>
+        {user ? `Hello, ${user.email}` : 'Hello, Guest'}
+    </div>
+  );
 }
 
-export default about
+export default About
