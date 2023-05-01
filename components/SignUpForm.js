@@ -11,6 +11,8 @@ const SignUpForm = (props) => {
     e.preventDefault();
     signUp(email, password);
     props.toggle()
+    setEmail("")
+    setPassword("")
   };
 
   return (

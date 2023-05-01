@@ -14,6 +14,8 @@ const SignInForm = (props) => {
     e.preventDefault();
     signIn(email, password);
     props.toggle("")
+    setEmail("")
+    setPassword("")
   };
 
   return (

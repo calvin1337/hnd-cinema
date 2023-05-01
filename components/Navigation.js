@@ -50,7 +50,7 @@ const setActive = (active) => {
         <div className="flex items-end justify-between py-3 md:py-5 md:block w-1/4">
       {user ? (
         <div className="flex items-center gap-4">
-          <h3 className="text-white">{user.email}</h3>
+          <h3 className="text-white">My Account</h3>
           <button onClick={signOut} className="py-2 md:px-6 text-center border-2 border-neutral-900 hover:cursor-pointer">
             Logout
           </button>
