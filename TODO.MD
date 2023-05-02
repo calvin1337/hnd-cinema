@@ -1,6 +1,6 @@
 NOTES FOR THINGS TO FIX WHILE CREATING SITE
 
-NAVBAR / center items potentially change#
+NAVBAR / center items potentially change
 NAVBAR active class tag 
 ADD LOGO
 
@@ -12,10 +12,10 @@ ABOUT PAGE -
 INFO ABOUT PROJECT ETC 
 INTERACTIVE MAP? 
 
-
+SIGN IN/SIGN UP ERROR CHECKS
+CHECKS ON USER SIGNUP
 
 Fix hight for movie cards in coming soon so that all images are same height. 
-
 
 if user clicks movie image it shows trailer
 

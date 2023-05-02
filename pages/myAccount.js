@@ -1,3 +1,4 @@
+import ViewBookings from "@/components/user/ViewBookings";
 import { useState} from "react"
 
 
@@ -14,7 +15,7 @@ const MyAccount = () => {
       <button className={selector === "bookings" ? "text-white" : "text-gray-500"}>View Bookings</button>
       <button className={selector === "account" ? "text-white" : "text-gray-500"}>Manage Account</button>
      </div>
-      
+      <ViewBookings />
     </div>
   )
 }

@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import React from 'react';
 import { Spinner } from '@/components/layout/Spinner';
+import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
+import { db } from '@/firebase';
 
 export const AuthContext = React.createContext({});
 
@@ -25,8 +27,19 @@ function useAuth() {
 
   const signUp = async (email, password) => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      console.log(userCredential.user, "TEST")
       setUser(userCredential.user);
+
+      
+      const userRef = doc(db, "users", userCredential.user.uid);
+const payload = {
+  email: "test@example.com",
+  displayName: "Test User"
+};
+await setDoc(userRef, payload);
+      
+      
     } catch (error) {
       setError(error.message);
       console.log(error.message);
