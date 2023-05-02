@@ -1,6 +1,6 @@
 import { auth } from '../firebase';
 import { useState } from 'react';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from "firebase/auth";
 import React from 'react';
 import { Spinner } from '@/components/layout/Spinner';
 import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
@@ -25,17 +25,20 @@ function useAuth() {
     }
   };
 
-  const signUp = async (email, password) => {
+  const signUp = async (email, password, displayName) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password)
       console.log(userCredential.user, "TEST")
       setUser(userCredential.user);
 
+    const user = userCredential.user;
+    await updateProfile(user, { displayName: displayName });
+     
       
-      const userRef = doc(db, "users", userCredential.user.uid);
+const userRef = doc(db, "users", userCredential.user.uid);
 const payload = {
-  email: "test@example.com",
-  displayName: "Test User"
+  email: userCredential.user.email,
+  displayName: displayName
 };
 await setDoc(userRef, payload);
       
