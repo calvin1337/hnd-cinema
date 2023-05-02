@@ -24,21 +24,22 @@ const Seats = (props) => {
     console.log(seatsArray);
   };
 
-  const showingRef = doc(db, "showings", props.showingID);
-  getDoc(showingRef)
-    .then((doc) => {
-      if (doc.exists()) {
-        // access the bookings array inside the showing document
-        const bookings = doc.data().bookings;
-        setAlreadyBooked(bookings);
-        updateSeatsArray(bookings);
-      } else {
-        console.log("No such document!");
-      }
-    })
-    .catch((error) => {
-      console.log("Error getting document:", error);
-    });
+  useEffect(() => {
+    const showingRef = doc(db, 'showings', props.showingID);
+    getDoc(showingRef)
+      .then((doc) => {
+        if (doc.exists()) {
+          const bookings = doc.data().bookings;
+          setAlreadyBooked(bookings); 
+          updateSeatsArray(bookings);
+        } else {
+          console.log('No such document!');
+        }
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error);
+      });
+  }, []);
 
   const updateSeatsArray = (bookings) => {
     const newSeatsArray = [...seatsArray];
