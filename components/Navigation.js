@@ -49,8 +49,8 @@ const setActive = (active) => {
         {/* Login container */}
         <div className="flex items-end justify-between py-3 md:py-5 md:block w-1/4">
       {user ? (
-        <div className="flex items-center gap-4">
-          <h3 className="text-white">My Account</h3>
+        <div className="flex items-center gap-4" >
+          <Link href="/myAccount" className="ppy-2 md:px-6 bg-neutral-900 text-white rounded-md mx-2">Account</Link>
           <button onClick={signOut} className="py-2 md:px-6 text-center border-2 border-neutral-900 hover:cursor-pointer">
             Logout
           </button>

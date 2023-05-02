@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import {doc, getDoc} from "firebase/firestore";
 import {db} from  "../../firebase"
 import Link from "next/link";
+import { Spinner } from '@/components/layout/Spinner';
 
 
 const BookingPage = () => {
@@ -47,7 +48,7 @@ const BookingPage = () => {
   }, [slug]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
   
   

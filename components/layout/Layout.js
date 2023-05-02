@@ -2,10 +2,10 @@
 import { useState } from "react";
 import Footer from "./Footer"
 import Header from "./Header"
-import Navigation from "./Navigation"
+import Navigation from "../Navigation"
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
-import Modal from "./Modal";
+import Modal from "../Modal";
 import { AuthContextProvider } from "@/hooks/AuthContext";
 {AuthContextProvider}
 

@@ -3,6 +3,7 @@ import {useState, useEffect} from "react";
 import { db } from '@/firebase'
 import { collection } from 'firebase/firestore'
 import { getDocs } from 'firebase/firestore'
+import { Spinner } from "@/components/layout/Spinner";
 
 
 
@@ -54,7 +55,7 @@ const Comingsoon = () => {
       </div>
       <div className="flex flex-col items-center">
       {loading ? (
-      <p>Loading...</p>
+      <Spinner />
     ) : (
         <>
         {data.map((movie) => (

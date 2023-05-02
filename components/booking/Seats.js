@@ -67,7 +67,7 @@ const Seats = (props) => {
           style={{ alignItems: "flex-start" }}
         >
           {row.map((seat, seatIndex) => (
-            <div
+            <button
               key={seatIndex}
               className="bg-gray-300 w-12 flex items-center justify-center text-lg font-bold"
               style={{
@@ -79,10 +79,12 @@ const Seats = (props) => {
                     : "gray",
               }}
               onClick={() => selectSeat(rowIndex, seatIndex)}
+              disabled={seat === "booked"}
             >
               {rowIndices[rowIndex]}
               {seatIndex + 1}
-            </div>
+              
+            </button>
           ))}
         </div>
       ))}

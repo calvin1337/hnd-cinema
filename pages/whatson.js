@@ -3,6 +3,7 @@ import DatePicker from "@/components/booking/DatePicker"
 import MovieCard from "@/components/booking/MovieCard"
 import { collection, getDocs, collectionGroup } from "firebase/firestore"
 import { db } from "@/firebase"
+import { Spinner } from "@/components/layout/Spinner"
 
 
 const Whatson = () => {
@@ -95,7 +96,7 @@ const Whatson = () => {
         {/* Display them depending on day selected, render on today */}
 
         {loading ? (
-  <p>Loading...</p>
+  <Spinner />
 ) : (
   <>
     {showings.map((movieShowings) => (
