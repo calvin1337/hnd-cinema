@@ -66,7 +66,7 @@ const BookingPage = () => {
     <div className="screen w-1/4 h-20 bg-white transform mt-5" style={{transform: "rotateX(-45deg)"}}></div>
 
     {/* Component? */}
-    <Seats/>
+    <Seats showingID={slug}/>
 
     <div className="user-booking">
     <h3>Seats selected: A1, A2</h3>

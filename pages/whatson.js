@@ -7,7 +7,7 @@ import { db } from "@/firebase"
 
 const Whatson = () => {
  
-
+  // CURRENTLY HARDCODED TO MONDAY FOR MOVIES NEED TO UPDATE TO CURRENT DAY
 
   const [day, setDay] = useState(new Date().getDay())
   const [active, setActive] = useState(0);
