@@ -4,6 +4,7 @@ import { useState, useContext, useEffect} from "react"
 import { db } from "@/firebase";
 import { collection, doc, getDoc } from "firebase/firestore";
 import React from "react";
+import ManageAccount from "@/components/user/ManageAccount";
 
 
 const MyAccount = () => {
@@ -29,16 +30,17 @@ const MyAccount = () => {
   }, []);
 
   return (
-    <div className="text-center text-white container mx-auto py-4" >
+    <div className="text-center text-white container mx-auto py-5" >
       <div className="text-2xl font-bold">
-      <h2>Hello {user.displayName}</h2>
-      <h1>User Dashboard</h1>
+      <h1>Hello, {user.displayName} Welcome!</h1>
+      <h2 className="pt-5">User Dashboard</h2>
       </div>
      <div className="gap-5 flex flex-row justify-center mt-5">
-      <button className={selector === "bookings" ? "text-white" : "text-gray-500"}>View Bookings</button>
-      <button className={selector === "account" ? "text-white" : "text-gray-500"}>Manage Account</button>
+      <button onClick={() => setSelector("bookings")} className={selector === "bookings" ? "text-white" : "text-gray-500"}>View Bookings</button>
+      <button onClick={() => setSelector("manage")} className={selector === "manage" ? "text-white" : "text-gray-500"}>Manage Account</button>
      </div>
-      <ViewBookings />
+     { selector === "bookings" ? <ViewBookings bookings={userBookings} /> : <ManageAccount /> }
+      
     </div>
   )
 }
