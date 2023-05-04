@@ -33,7 +33,7 @@ const DatePicker = (props) => {
   const startOfNextWeek = new Date(
     startOfThisWeek.getFullYear(),
     startOfThisWeek.getMonth(),
-    startOfThisWeek.getDate() + 7
+    startOfThisWeek.getDate() 
   );
   const endOfNextWeek = new Date(
     startOfNextWeek.getFullYear(),
