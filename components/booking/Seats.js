@@ -3,6 +3,9 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 const Seats = (props) => {
+
+  // NEED TO ADD DIFFERENT SCREENS WITH DIFFERENT SIZE OF ROWS AND SEATS
+  
   const numRows = 5; // set the number of rows
   const seatsPerRow = 5; // set the number of seats per row
 
@@ -14,15 +17,30 @@ const Seats = (props) => {
       .map(() => Array(seatsPerRow).fill())
   );
   const [alreadyBooked, setAlreadyBooked] = useState([]);
+  const [userCart, setUserCart] = useState([]);
 
-  const selectSeat = (rowIndex, seatIndex) => {
+
+  const selectSeat = async (rowIndex, seatIndex) => {
     const newSeatsArray = [...seatsArray];
     newSeatsArray[rowIndex][seatIndex] =
       newSeatsArray[rowIndex][seatIndex] === "selected" ? "" : "selected";
     setSeatsArray(newSeatsArray);
-    console.log(rowIndices[rowIndex], seatIndex + 1);
-    console.log(seatsArray);
+  
+    // Update userCart state
+    const currentSeat = rowIndices[rowIndex] + (seatIndex + 1);
+    if (newSeatsArray[rowIndex][seatIndex] === "selected") {
+      setUserCart((prevUserCart) => [...prevUserCart, currentSeat]);
+    } else {
+      setUserCart((prevUserCart) =>
+        prevUserCart.filter((seat) => seat !== currentSeat)
+      );
+    }
   };
+
+  useEffect(() => {
+    props.userSelectedSeats(userCart);
+  }, [userCart, props]);
+
 
   useEffect(() => {
     const showingRef = doc(db, 'showings', props.showingID);
@@ -40,6 +58,7 @@ const Seats = (props) => {
         console.log('Error getting document:', error);
       });
   }, []);
+  
 
   const updateSeatsArray = (bookings) => {
     const newSeatsArray = [...seatsArray];
@@ -57,6 +76,8 @@ const Seats = (props) => {
     }
     setSeatsArray(newSeatsArray);
   };
+
+  
 
   return (
     <div className="seats-container  bg-gray-500 p-4">

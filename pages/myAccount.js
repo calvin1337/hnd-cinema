@@ -12,6 +12,8 @@ const MyAccount = () => {
   const [selector, setSelector] = useState("bookings");
   const { user } = React.useContext(AuthContext);
   const [userBookings, setUserBookings] = useState([]);
+  
+
 
   const fetchUserBookings = async () => {
     const userRef = doc(collection(db, "users"), user.uid);
