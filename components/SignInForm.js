@@ -1,11 +1,10 @@
 // Author: Calvin Donaldson
 // Date: 07/05/2023
 // Description: Sign-in form component for the modal. Allows users to enter their email and password for authentication.
-
 import React, { useState } from 'react';
 import useAuth from '../hooks/AuthContext';
 
-const SignInForm = (props) => {
+const SignInForm = ({ toggle }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -15,16 +14,21 @@ const SignInForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!email || !password) {
+      setError('Please enter both email and password.');
+      return;
+    }
+
     try {
       // Perform sign-in operation here
       // For example, call the signIn function from useAuth hook
-      signIn(email, password);
+      await signIn(email, password);
 
       // Reset the form and error state after successful sign-in
       setEmail('');
       setPassword('');
       setError('');
-      props.toggle('');
+      toggle(false);
     } catch (error) {
       // Handle sign-in error
       console.log(error);
