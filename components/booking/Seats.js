@@ -38,17 +38,12 @@ const Seats = (props) => {
   };
 
   useEffect(() => {
-    props.userSelectedSeats(userCart);
-  }, [userCart, props]);
-
-
-  useEffect(() => {
     const showingRef = doc(db, 'showings', props.showingID);
     getDoc(showingRef)
       .then((doc) => {
         if (doc.exists()) {
           const bookings = doc.data().bookings;
-          setAlreadyBooked(bookings); 
+          setAlreadyBooked(bookings);
           updateSeatsArray(bookings);
         } else {
           console.log('No such document!');
@@ -57,27 +52,29 @@ const Seats = (props) => {
       .catch((error) => {
         console.log('Error getting document:', error);
       });
-  }, []);
   
-
-  const updateSeatsArray = (bookings) => {
-    const newSeatsArray = [...seatsArray];
-    // loop through each booking in the array
-    for (const booking of bookings) {
-      // split the booking string into its row and seat parts
-      const [row, seat] = booking.split("");
-      // find the index of the row in the rowIndices object
-      const rowIndex = Object.keys(rowIndices).findIndex(
-        (key) => rowIndices[key] === row
-      );
-      // convert the seat string to a number and subtract 1 to get the seat index
-      const seatIndex = Number(seat) - 1;
-      newSeatsArray[rowIndex][seatIndex] = "booked";
-    }
-    setSeatsArray(newSeatsArray);
-  };
-
+    const updateSeatsArray = (bookings) => {
+      const newSeatsArray = Array(numRows)
+        .fill()
+        .map(() => Array(seatsPerRow).fill(""));
   
+      bookings.forEach((booking) => {
+        const [row, seat] = booking.split("");
+        const rowIndex = Object.keys(rowIndices).findIndex(
+          (key) => rowIndices[key] === row
+        );
+        const seatIndex = Number(seat) - 1;
+  
+        if (newSeatsArray[rowIndex] && newSeatsArray[rowIndex][seatIndex]) {
+          newSeatsArray[rowIndex][seatIndex] = "booked";
+        } else {
+          console.log('Invalid booking:', booking);
+        }
+      });
+  
+      setSeatsArray([...newSeatsArray]);
+    };
+  }, [props.showingID]);
 
   return (
     <div className="seats-container  bg-gray-500 p-4">
