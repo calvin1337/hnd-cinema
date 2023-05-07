@@ -7,6 +7,8 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import React from 'react';
 import { AuthContext } from '@/hooks/AuthContext';
+import { v4 as uuidv4 } from 'uuid';
+
 
 export const Payment = (props) => {
   const [bookingSuccess, setBookingSuccess] = useState(false);
@@ -63,12 +65,13 @@ export const Payment = (props) => {
     // Call the addBookingToDatabase function
     addBookingToDatabase();
   }, [props.booked.showingID, props.seats, user.uid]);
+const bookingCode = uuidv4().substr(0, 5);
 
   console.log(props.booked);
 
   return (
     <div>
-      {bookingSuccess && <p>Booking successful!</p>}
+      {bookingSuccess && <p>Booking successful! your booking code: {bookingCode}</p>}
       {/* Payment component content */}
     </div>
   );
