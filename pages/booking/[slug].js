@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import {doc, getDoc} from "firebase/firestore";
 import {db} from  "../../firebase"
-import Link from "next/link";
 import { Spinner } from '@/components/layout/Spinner';
+import { Payment } from '@/components/booking/Payment';
 
 
 const BookingPage = () => {
@@ -34,7 +34,7 @@ const BookingPage = () => {
           const movieDocSnap = await getDoc(movieDocRef);
           if (movieDocSnap.exists()) {
             const movieData = movieDocSnap.data();
-            setShowing({ ...showingData, ...movieData });            
+            setShowing({ ...showingData, ...movieData, showingID: docSnap.id });            
             setLoading(false);
           } else {
             throw new Error('Movie not found');
@@ -106,7 +106,7 @@ const BookingPage = () => {
 
     </>
     
-    ) : (<h1>Booking</h1>)
+    ) : (<Payment seats={booking} booked={showing}> </Payment>)
     }
     
 
