@@ -1,3 +1,9 @@
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: Used for fetching movies from database 
+
+
+
 import { useState, useEffect} from 'react'
 import { collection } from 'firebase/firestore'
 import { getDocs } from 'firebase/firestore'

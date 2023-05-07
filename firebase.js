@@ -1,3 +1,8 @@
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: firebase configuration file
+
+
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from "firebase/app";

@@ -1,3 +1,6 @@
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: Image carousel using swiper js
 
 // Swiper components 
 import { Navigation} from "swiper";

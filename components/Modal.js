@@ -1,9 +1,12 @@
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: Modal component for displaying a pop-up modal with sign-in and sign-up forms.
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useEffect } from "react";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
-
 
 const Modal = (props) => {
   const { children, display, show, toggle } = props;
@@ -22,8 +25,8 @@ const Modal = (props) => {
   });
 
   return (
-    <div className="modal" style={{display: show ? '' : 'none' }} ref={modalRef}>
-      <div className="modal-content" >
+    <div className="modal" style={{ display: show ? "" : "none" }} ref={modalRef}>
+      <div className="modal-content">
         <button onClick={() => toggle("")} className="closeBtn">
           <FontAwesomeIcon icon={faTimes} size="2xl" color="black" />
         </button>

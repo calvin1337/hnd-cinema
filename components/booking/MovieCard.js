@@ -1,8 +1,13 @@
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: Movie card component displaying movie details and available showings
+
 import Link from "next/link";
 
+// MovieCard component to display movie details and showings
 const MovieCard = (props) => {
   const { movieTitle, showing } = props;
-  console.log(props);
+
   return (
     <div
       className="grid grid-cols-2 grid-rows-auto mt-5 mb-5 w-4/5"
@@ -11,7 +16,7 @@ const MovieCard = (props) => {
       <div className="flex justify-center flex-col pb-5">
         <div className="w-4/5 h-4/5">
           <img
-            src="https://via.placeholder.com/600x400"
+            src={props.img}
             alt=""
             width={600}
             height={400}
@@ -30,6 +35,7 @@ const MovieCard = (props) => {
         </p>
         <div className="showing mt-5">
           <ul className="flex flex-row gap-5">
+            {/* Display available showings */}
             {props.showings.map((showing) => (
               <li key={showing.id}>
                 <Link href={`/booking/${showing.id}`}>{showing.time}</Link>

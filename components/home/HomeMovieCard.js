@@ -1,4 +1,6 @@
-
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: Component for displaying the list of movies currently showing on the home page
 
 const HomeMovieCard = ({url, title}) => {
   return (

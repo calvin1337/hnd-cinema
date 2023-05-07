@@ -1,3 +1,8 @@
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: component for users to view bookings they have made
+
+
 import React, { useContext, useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase';

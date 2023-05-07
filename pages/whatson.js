@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react"
-import DatePicker from "@/components/booking/DatePicker"
-import MovieCard from "@/components/booking/MovieCard"
-import { collection, getDocs, collectionGroup } from "firebase/firestore"
-import { db } from "@/firebase"
-import { Spinner } from "@/components/layout/Spinner"
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: What's On page displaying movie showings for the selected day
 
+import { useState, useEffect } from "react";
+import DatePicker from "@/components/booking/DatePicker";
+import MovieCard from "@/components/booking/MovieCard";
+import { collection, getDocs, collectionGroup } from "firebase/firestore";
+import { db } from "@/firebase";
+import { Spinner } from "@/components/layout/Spinner";
 
 const Whatson = () => {
- 
-  // CURRENTLY HARDCODED TO MONDAY FOR MOVIES NEED TO UPDATE TO CURRENT DAY
-
   const weekdays = [
     "Sunday",
     "Monday",
@@ -19,42 +19,25 @@ const Whatson = () => {
     "Friday",
     "Saturday",
   ];
-  const [day, setDay] = useState(weekdays[new Date().getDay()])
-  console.log(new Date().getDay())
+  const [day, setDay] = useState(weekdays[new Date().getDay()]);
   const [active, setActive] = useState(weekdays[new Date().getDay()]);
   const [showings, setShowings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  
-
-  // const getShowings = async () => {
-  //   const querySnapshot = await getDocs(collectionGroup(db, "showings"));
-  //   const showingsData = {};
-  
-  //   querySnapshot.forEach((doc) => {
-  //     const movieId = doc.data().movie_id;
-  //     if (!showingsData[movieId]) {
-  //       showingsData[movieId] = [];
-  //     }
-  //     showingsData[movieId].push({ ...doc.data(), id: doc.id });
-  //   });
-  
-  //   setShowings(showingsData);
-  //   console.log(showingsData)
-  // };
-
+  // Retrieve showings data from Firestore
   const getShowings = async () => {
     const querySnapshot = await getDocs(collectionGroup(db, "showings"));
     const showingsData = {};
-    // Create a map of movie IDs to movie data for all movies in the "movies" collection
     const moviesSnapshot = await getDocs(collection(db, "movies"));
     const moviesData = {};
+
+    // Create a map of movie IDs to movie data for all movies in the "movies" collection
     moviesSnapshot.forEach((doc) => {
       const movieId = doc.id;
       const movieData = doc.data();
       moviesData[movieId] = movieData;
     });
-  
+
     // Merge movie data into showings data based on movie_id field
     querySnapshot.forEach((doc) => {
       const movieId = doc.data().movie_id;
@@ -62,36 +45,29 @@ const Whatson = () => {
       if (!showingsData[movieId]) {
         showingsData[movieId] = { movieData, showings: [] };
       }
-      showingsData[movieId].showings.push({ ...doc.data(), id: doc.id, slug:doc.id });
-
-      // Filter showings by selected day
-      Object.keys(showingsData).forEach((movieId) => {
-        const movieShowings = showingsData[movieId].showings;
-        // Currently hardcoded to Monday
-        const filteredShowings = movieShowings.filter((showing) => showing.day === day);
-        showingsData[movieId].showings = filteredShowings;
-        setLoading(false);
-      });
-  
+      showingsData[movieId].showings.push({ ...doc.data(), id: doc.id, slug: doc.id });
     });
-  
+
+    // Filter showings by selected day
+    Object.keys(showingsData).forEach((movieId) => {
+      const movieShowings = showingsData[movieId].showings;
+      const filteredShowings = movieShowings.filter((showing) => showing.day === day);
+      showingsData[movieId].showings = filteredShowings;
+      setLoading(false);
+    });
+
     setShowings(Object.values(showingsData));
-    console.log(showingsData);
   };
-  
+
   useEffect(() => {
     getShowings();
   }, [day]);
 
-
+  // Update the selected day
   const daySelected = (day) => {
-    
-    console.log(day)
-    setActive(day)
-    setDay(day)
-   
-  }
-
+    setActive(day);
+    setDay(day);
+  };
   return (
     <div className="text-white">
       <div className="mb-10 mt-10 text-center">
@@ -116,6 +92,7 @@ const Whatson = () => {
                     key={movieShowings.movieData.id}
                     movieTitle={movieShowings.movieData.title}
                     showings={filteredShowings.sort((a, b) => a.day.localeCompare(b.day))}
+                    img={movieShowings.movieData.img}
                   />
                 );
               } else {

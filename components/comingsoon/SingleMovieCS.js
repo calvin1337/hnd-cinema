@@ -1,3 +1,7 @@
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: RatingCS component for upvoting and downvoting movie ratings
+
 import InformationCS from "./InformationCS";
 import RatingCS from "./RatingCS";
 

@@ -1,3 +1,7 @@
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: Footer component for the website. general information about the website and links to personal website and github.
+
 const Footer = () => {
   return (
     <footer className=" mt-10">

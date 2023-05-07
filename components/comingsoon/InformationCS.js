@@ -1,3 +1,6 @@
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: InformationCS component for displaying movie information and poster
 
 const InformationCS = (props) => {
   return (

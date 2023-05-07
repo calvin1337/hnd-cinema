@@ -1,3 +1,8 @@
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: Layout component for the app. This component allows me to share a common section across multiple pages. Header, Navigation and Footer.
+
+
 // Imports
 import { useState } from "react";
 import Footer from "./Footer"

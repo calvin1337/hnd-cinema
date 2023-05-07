@@ -1,3 +1,8 @@
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: Component for booking movie tickets
+
+
 import Seats from '@/components/booking/Seats'
 
 import { useRouter } from 'next/router';

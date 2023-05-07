@@ -1,3 +1,7 @@
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: Payment component for adding a booking to the database and updating the user's account
+
 import { useEffect, useState } from 'react';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
@@ -9,8 +13,10 @@ export const Payment = (props) => {
   const { user } = React.useContext(AuthContext);
 
   useEffect(() => {
+    // Function to add the booking to the database and update the user's account
     const addBookingToDatabase = async () => {
       try {
+        // Get the showing document from Firestore
         const showingRef = doc(db, 'showings', props.booked.showingID);
         const docSnap = await getDoc(showingRef);
         if (docSnap.exists()) {
@@ -38,7 +44,7 @@ export const Payment = (props) => {
 
             // Add the new booking to the user's bookings array
             const userBookings = userData.bookings || [];
-            const updatedUserBookings = [...userBookings, { seats: props.seats, showingID: props.booked.showingID, title: props.booked.title, time: props.booked.time, screen: 4}];
+            const updatedUserBookings = [...userBookings, { seats: props.seats, showingID: props.booked.showingID, title: props.booked.title, time: props.booked.time, screen: 4 }];
 
             // Update the bookings field in the user document
             await updateDoc(userRef, { bookings: updatedUserBookings });
@@ -54,6 +60,7 @@ export const Payment = (props) => {
       }
     };
 
+    // Call the addBookingToDatabase function
     addBookingToDatabase();
   }, [props.booked.showingID, props.seats, user.uid]);
 

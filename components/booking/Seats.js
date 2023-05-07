@@ -1,31 +1,38 @@
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: Seats component for selecting seats and displaying their availability
+
 import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 const Seats = (props) => {
 
-  // NEED TO ADD DIFFERENT SCREENS WITH DIFFERENT SIZE OF ROWS AND SEATS
-  
-  const numRows = 5; // set the number of rows
-  const seatsPerRow = 5; // set the number of seats per row
+  // Set the number of rows and seats per row
+  const numRows = 5;
+  const seatsPerRow = 5;
 
-  const rowIndices = { 0: "A", 1: "B", 2: "C", 3: "D", 4: "E" }; // set the row letters
+  // Define the row indices using row letters
+  const rowIndices = { 0: "A", 1: "B", 2: "C", 3: "D", 4: "E" };
 
+  // Initialize the seats array state
   const [seatsArray, setSeatsArray] = useState(
     Array(numRows)
       .fill()
       .map(() => Array(seatsPerRow).fill())
   );
+
+  // Initialize the already booked seats and user cart states
   const [alreadyBooked, setAlreadyBooked] = useState([]);
   const [userCart, setUserCart] = useState([]);
 
-
+  // Function to select a seat
   const selectSeat = async (rowIndex, seatIndex) => {
     const newSeatsArray = [...seatsArray];
     newSeatsArray[rowIndex][seatIndex] =
       newSeatsArray[rowIndex][seatIndex] === "selected" ? "" : "selected";
     setSeatsArray(newSeatsArray);
-  
+
     // Update userCart state
     const currentSeat = rowIndices[rowIndex] + (seatIndex + 1);
     if (newSeatsArray[rowIndex][seatIndex] === "selected") {
@@ -37,10 +44,12 @@ const Seats = (props) => {
     }
   };
 
+  // Update the parent component with the user's selected seats
   useEffect(() => {
     props.userSelectedSeats(userCart);
   }, [userCart, props]);
 
+  // Fetch already booked seats from the showing document in Firestore
   useEffect(() => {
     const showingRef = doc(db, 'showings', props.showingID);
     getDoc(showingRef)
@@ -56,12 +65,13 @@ const Seats = (props) => {
       .catch((error) => {
         console.log('Error getting document:', error);
       });
-  
+
+    // Update the seats array with the booked seats
     const updateSeatsArray = (bookings) => {
       const newSeatsArray = Array(numRows)
         .fill()
         .map(() => Array(seatsPerRow).fill(""));
-  
+
       bookings.forEach((booking) => {
         const [row, seat] = booking.split("");
         const rowIndex = Object.keys(rowIndices).findIndex(
@@ -70,7 +80,7 @@ const Seats = (props) => {
         const seatIndex = Number(seat) - 1;
         newSeatsArray[rowIndex][seatIndex] = "booked";
       });
-  
+
       setSeatsArray([...newSeatsArray]);
     };
   }, [props.showingID]);

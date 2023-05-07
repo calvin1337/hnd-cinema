@@ -1,4 +1,9 @@
-import React from 'react'
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: functional component called Spinner which returns a loading spinner with the text "Loading". 
+
+/* Spinner */
+ /* https://cssloaders.github.io/ */
 
 export const Spinner = () => {
   return (

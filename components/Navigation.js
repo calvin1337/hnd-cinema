@@ -1,3 +1,8 @@
+// Author: Calvin Donaldson
+// Date: 07/05/2023
+// Description: Navigation component for the app. 
+
+
 import Link from "next/link";
 import { useState } from "react";
 import  useAuth  from "@/hooks/AuthContext";
