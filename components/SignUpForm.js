@@ -10,11 +10,17 @@ const SignUpForm = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    signUp(email, password, displayName);
-    props.toggle()
-    setEmail("")
-    setPassword("")
-    setDisplayName("")
+    
+    try {
+      await signUp(email, password, displayName);
+      props.toggle();
+      setEmail("");
+      setPassword("");
+      setDisplayName("");
+    } catch (error) {
+      // Handle sign-up error
+      console.log(error); // Log the error for debugging
+    }
   };
 
   return (

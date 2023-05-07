@@ -10,10 +10,22 @@ const Whatson = () => {
  
   // CURRENTLY HARDCODED TO MONDAY FOR MOVIES NEED TO UPDATE TO CURRENT DAY
 
-  const [day, setDay] = useState(new Date().getDay())
-  const [active, setActive] = useState(0);
+  const weekdays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const [day, setDay] = useState(weekdays[new Date().getDay()])
+  console.log(new Date().getDay())
+  const [active, setActive] = useState(weekdays[new Date().getDay()]);
   const [showings, setShowings] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  
 
   // const getShowings = async () => {
   //   const querySnapshot = await getDocs(collectionGroup(db, "showings"));
@@ -56,7 +68,7 @@ const Whatson = () => {
       Object.keys(showingsData).forEach((movieId) => {
         const movieShowings = showingsData[movieId].showings;
         // Currently hardcoded to Monday
-        const filteredShowings = movieShowings.filter((showing) => showing.day === "Monday");
+        const filteredShowings = movieShowings.filter((showing) => showing.day === day);
         showingsData[movieId].showings = filteredShowings;
         setLoading(false);
       });
@@ -69,16 +81,18 @@ const Whatson = () => {
   
   useEffect(() => {
     getShowings();
-  }, []);
+  }, [day]);
 
 
-  const daySelected = (e) => {
-    console.log(e)
-    setActive(e)
+  const daySelected = (day) => {
+    
+    console.log(day)
+    setActive(day)
+    setDay(day)
+   
   }
 
-  return(
-    
+  return (
     <div className="text-white">
       <div className="mb-10 mt-10 text-center">
         <h1>Welcome</h1>
@@ -87,30 +101,32 @@ const Whatson = () => {
       <div className="title-container text-center">
         <h1>Whats on</h1>
       </div>
-      <div>
-
-    
-      </div>
-      <DatePicker selectDay={(e) => daySelected(e)} active={active} day={day}/>
+      <div></div>
+      <DatePicker selectDay={(e) => daySelected(e)} active={active} day={day} />
       <div className="flex flex-col items-center">
-        {/* Display them depending on day selected, render on today */}
-
         {loading ? (
-  <Spinner />
-) : (
-  <>
-    {showings.map((movieShowings) => (
-      <MovieCard 
-        key={movieShowings.movieData.id} 
-        movieTitle={movieShowings.movieData.title} 
-        showings={movieShowings.showings.sort((a, b) => a.day.localeCompare(b.day))}
-      />
-    ))}
-  </>
-)}
-      </div>      
+          <Spinner />
+        ) : (
+          <>
+            {showings.map((movieShowings) => {
+              const filteredShowings = movieShowings.showings.filter((showing) => showing.day === day);
+              if (filteredShowings.length > 0) {
+                return (
+                  <MovieCard
+                    key={movieShowings.movieData.id}
+                    movieTitle={movieShowings.movieData.title}
+                    showings={filteredShowings.sort((a, b) => a.day.localeCompare(b.day))}
+                  />
+                );
+              } else {
+                return null; // If there are no showings on Sunday, don't render the card
+              }
+            })}
+          </>
+        )}
+      </div>
     </div>
-  )
+  );
 }
 
 

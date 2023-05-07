@@ -1,9 +1,14 @@
+// Author: Calvin Donaldson
+// Date: 07/05/2023 
+// Description: This code defines a React component called DatePicker. It provides a user interface for selecting a day from a week view.
+
 import { useState, useEffect } from "react";
 
 const DatePicker = (props) => {
   const { selectDay, active, day } = props;
 
   const [days, setDays] = useState([]);
+
 
   useEffect(() => {
     const weekdays = [
@@ -49,12 +54,13 @@ const DatePicker = (props) => {
       <div className="gap-5 flex flex-row justify-center mt-5">
       {days && days.map((day, index) => (
   <button
-    key={index}
-    className={active === index ? "text-white" : "text-gray-500"}
-    onClick={() => selectDay(index)}
-  >
-    {index === 0 ? "Today" : day}
-  </button>
+  key={index}
+  className={active === day ? "text-white" : "text-gray-500"}
+
+  onClick={() => selectDay(day)}
+>
+  {day}
+</button>
 ))}
       </div>
       <h1 className="mt-5">{displayDate}</h1>

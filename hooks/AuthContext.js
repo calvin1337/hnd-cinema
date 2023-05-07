@@ -38,7 +38,8 @@ function useAuth() {
 const userRef = doc(db, "users", userCredential.user.uid);
 const payload = {
   email: userCredential.user.email,
-  displayName: displayName
+  displayName: displayName,
+  booking: [],
 };
 await setDoc(userRef, payload);
       

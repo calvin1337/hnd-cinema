@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 
+import useAuth from "../hooks/AuthContext"
+
 const SignInForm = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+  const { signIn } = useAuth();
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -11,7 +17,7 @@ const SignInForm = (props) => {
     try {
       // Perform sign-in operation here
       // For example, call the signIn function from useAuth hook
-      await signIn(email, password);
+      signIn(email, password);
 
       // Reset the form and error state after successful sign-in
       setEmail('');
@@ -21,6 +27,7 @@ const SignInForm = (props) => {
 
     } catch (error) {
       // Handle sign-in error
+      console.log(error)
       setError('An error occurred during sign-in. Please try again.');
     }
 

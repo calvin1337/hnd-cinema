@@ -12,7 +12,7 @@ const HomeMovieCard = ({url, title}) => {
           {/* Items */}
           <div className="bottom-0 flex flex-col m-5 absolute right-0 text-right ">
             <span className="text-3xl text-indigo-50">{title}</span>
-            <span className="text-blue-500">Book Now</span>
+            {/* <span className="text-blue-500">Book Now</span> */}
           </div>
         </div>
       </div>
