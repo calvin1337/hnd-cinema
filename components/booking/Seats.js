@@ -38,6 +38,10 @@ const Seats = (props) => {
   };
 
   useEffect(() => {
+    props.userSelectedSeats(userCart);
+  }, [userCart, props]);
+
+  useEffect(() => {
     const showingRef = doc(db, 'showings', props.showingID);
     getDoc(showingRef)
       .then((doc) => {
@@ -64,17 +68,14 @@ const Seats = (props) => {
           (key) => rowIndices[key] === row
         );
         const seatIndex = Number(seat) - 1;
-  
-        if (newSeatsArray[rowIndex] && newSeatsArray[rowIndex][seatIndex]) {
-          newSeatsArray[rowIndex][seatIndex] = "booked";
-        } else {
-          console.log('Invalid booking:', booking);
-        }
+        newSeatsArray[rowIndex][seatIndex] = "booked";
       });
   
       setSeatsArray([...newSeatsArray]);
     };
   }, [props.showingID]);
+
+  
 
   return (
     <div className="seats-container  bg-gray-500 p-4">

@@ -1,8 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 
 export const Payment = (props) => {
+  const [bookingSuccess, setBookingSuccess] = useState(false);
+
   useEffect(() => {
     const addBookingToDatabase = async () => {
       try {
@@ -21,6 +23,9 @@ export const Payment = (props) => {
           // Update the bookings field in the document
           await updateDoc(showingRef, { bookings: updatedBookings });
           console.log('Booking added to the database.');
+
+          // Set booking success to true
+          setBookingSuccess(true);
         } else {
           console.log('No such document!');
         }
@@ -36,6 +41,7 @@ export const Payment = (props) => {
 
   return (
     <div>
+      {bookingSuccess && <p>Booking successful!</p>}
       {/* Payment component content */}
     </div>
   );

@@ -24,7 +24,7 @@ const setActive = (active) => {
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8 text-white">
         {/* Logo container */}
         <div className="flex items-start py-3 md:py-5 md:block w-1/4">
-         LOGO
+         HNCD CINEMA
         </div>
         {/* Link container */}
         <div className="flex items-center py-3 md:py-5 md:block w-full">
