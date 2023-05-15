@@ -5,8 +5,10 @@ import React, { useState } from 'react';
 import useAuth from '../hooks/AuthContext';
 
 const SignInForm = ({ toggle }) => {
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const [error, setError] = useState('');
 
   const { signIn } = useAuth();

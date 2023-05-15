@@ -10,6 +10,7 @@ import { getDoc } from 'firebase/firestore';
 
 const RatingCS = (props) => {
   // Function to update the rating of a movie
+
   const updateRating = async (id, vote) => {
     const itemRef = doc(db, "comingsoon", id); // Get the reference to the movie document
     const itemDoc = await getDoc(itemRef); // Get the document data

@@ -8,6 +8,9 @@ import { useState } from "react";
 import  useAuth  from "@/hooks/AuthContext";
 import { AuthContext } from '@/hooks/AuthContext';
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faRightFromBracket} from '@fortawesome/free-solid-svg-icons';
+
 
 
 export default function Navigation(props) {
@@ -55,17 +58,17 @@ const setActive = (active) => {
         <div className="flex items-end justify-between py-3 md:py-5 md:block w-1/4">
       {user ? (
         <div className="flex items-center gap-4" >
-          <Link href="/myAccount" className="py-2 md:px-6 bg-neutral-900 text-white rounded-md mx-2">Account</Link>
-          <button onClick={signOut} className="py-2 md:px-6 text-center border-2 border-neutral-900 hover:cursor-pointer">
-            Logout
+          <Link href="/myAccount" className="py-2 md:px-6 bg-neutral-900 text-white rounded-md mx-2"><FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Link>
+          <button onClick={signOut} className="py-2 md:px-6 text-center text-red-700 rounded hover:cursor-pointer hover:bg-neutral-900 hover:text-red-500">
+          <FontAwesomeIcon size={"xl"} icon={faRightFromBracket} />          
           </button>
         </div>
       ) : (
         <ul className="items-center justify-center gap-4 md:flex">
-          <li onClick={() => props.toggle("login")} className="py-2 md:px-6 text-center border-2 border-neutral-900 hover:cursor-pointer">
+          <li onClick={() => props.toggle("login")} className="bg-neutral-950 border-neutral-950 border hover:bg-neutral-700 text-gray-100  font-bold py-2 px-4 rounded hover:cursor-pointer">
             Login
           </li>
-          <li onClick={() => props.toggle("reg")} className="py-2 md:px-6 text-center border-2  border-neutral-900 hover:cursor-pointer">
+          <li onClick={() => props.toggle("reg")} className="bg-neutral-950 border-neutral-950 border hover:bg-neutral-700 font-bold py-2 px-4 rounded hover:cursor-pointer">
             Register
           </li>
         </ul>

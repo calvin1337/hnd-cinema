@@ -11,6 +11,7 @@ const Comingsoon = () => {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+
   const moviesCollectionRef = collection(db, "comingsoon");
 
   const getComingSoon = async () => {
@@ -30,6 +31,8 @@ const Comingsoon = () => {
       const sortedData = filteredData.sort((a, b) => b.rating - a.rating);
       setData(filteredData);
       setLoading(false);
+
+      
     } catch (err) {
       console.error(err);
     }
