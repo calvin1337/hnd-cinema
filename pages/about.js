@@ -2,6 +2,7 @@
 // Author: Calvin Donaldson
 // Date: 07/05/2023
 // Description: About page for the app contains information about the project and the author.
+
 import React from "react";
 
 const AboutPage = () => {

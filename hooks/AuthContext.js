@@ -24,10 +24,11 @@ function useAuth() {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       setUser(userCredential.user);
-      console.log(userCredential.user);
+      return null
+      
     } catch (error) {
       setError(error.message);
-      console.log(error.message);
+      return error
     }
   };
 
@@ -35,7 +36,7 @@ function useAuth() {
   const signUp = async (email, password, displayName) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(userCredential.user, "TEST");
+      
       setUser(userCredential.user);
 
       const user = userCredential.user;
@@ -48,10 +49,11 @@ function useAuth() {
         booking: [],
       };
       await setDoc(userRef, payload);
+      return null 
 
     } catch (error) {
-      setError(error.message);
-      console.log(error.message);
+      
+      return error 
     }
   };
 

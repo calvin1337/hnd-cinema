@@ -1,27 +1,37 @@
 import useAuth from "../hooks/AuthContext"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const SignUpForm = (props) => {
   const [displayName, setDisplayName] = useState(''); 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
-  const { signUp, error } = useAuth();
+
+  const { signUp } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    try {
-      await signUp(email, password, displayName);
-      props.toggle();
-      setEmail("");
-      setPassword("");
-      setDisplayName("");
-    } catch (error) {
-      // Handle sign-up error
-      console.log(error); // Log the error for debugging
+  
+    const signUpError = await signUp(email, password, displayName);
+    if (signUpError) {
+      if (signUpError.code === 'auth/email-already-in-use') {
+        setError('The email address is already in use. Please choose a different email.');
+      } else if (signUpError.code === 'auth/weak-password') {
+        setError('The password is too weak. Please choose a stronger password.');
+      } else {
+        setError('An error occurred during sign-up. Please try again.');
+      }
+      
+    } else {
+      setEmail('');
+      setPassword('');
+      setDisplayName('');
+      setError(null);
+      props.toggle(false);
     }
   };
+
 
   return (
     <form
@@ -55,10 +65,11 @@ const SignUpForm = (props) => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
       ></input>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <button type="submit" value="Sign Up">
         Sign Up
       </button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      
     </form>
   );
 };

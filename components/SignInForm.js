@@ -8,34 +8,30 @@ const SignInForm = ({ toggle }) => {
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
-  const [error, setError] = useState('');
-
-  const { signIn } = useAuth();
+  const { signIn, } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
-      setError('Please enter both email and password.');
-      return;
-    }
-
-    try {
-      // Perform sign-in operation here
-      // For example, call the signIn function from useAuth hook
-      await signIn(email, password);
-
-      // Reset the form and error state after successful sign-in
+    const signInError = await signIn(email, password);
+    if (signInError) {
+      if (signInError.code === 'auth/user-not-found') {
+        setError('Invalid email or password. Please try again.');
+      } else if (signInError.code === 'auth/wrong-password') {
+        setError('Invalid email or password. Please try again.');
+      } else {
+        setError('An error occurred during sign-in. Please try again.');
+      }
+    
+    } else {
       setEmail('');
       setPassword('');
-      setError('');
       toggle(false);
-    } catch (error) {
-      // Handle sign-in error
-      console.log(error);
-      setError('An error occurred during sign-in. Please try again.');
+      setError(null);
     }
+  
   };
 
   return (
