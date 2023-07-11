@@ -9,13 +9,14 @@ import  useAuth  from "@/hooks/AuthContext";
 import { AuthContext } from '@/hooks/AuthContext';
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faRightFromBracket} from '@fortawesome/free-solid-svg-icons';
+import { faUser, faRightFromBracket, faBars} from '@fortawesome/free-solid-svg-icons';
 
 
 
 export default function Navigation(props) {
   
  const [activeLink, setActiveLink] = useState("home");
+ const [open, setOpen ] = useState("Close");
  
  const { user } = React.useContext(AuthContext);
  const { signOut } = useAuth()
@@ -25,29 +26,33 @@ const setActive = (active) => {
  }
 
 
+
 // COULD ADD ALWAYS AT TOP OF PAGE ON SCROLLING
   return (
     <nav style={{background:"#222"}}>
       {/* Main container*/}
-      <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8 text-white">
+      <div className="justify-between px-4 mx-auto lg:max-w-7xl items-center flex md:px-8 text-white">
         {/* Logo container */}
         <div className="flex items-start py-3 md:py-5 md:block w-1/4">
          HNCD CINEMA
         </div>
+        <div className="lg:hidden h-6 w-6 cursor-pointer">
+        <FontAwesomeIcon size={"xl"} icon={faBars} />          
+        </div>
         {/* Link container */}
-        <div className="flex items-center py-3 md:py-5 md:block w-full">
+        <div className="items-center py-3 md:py-5 w-full hidden lg:block">
           <ul className="justify-center md:flex">
             <li>
-              <Link className={activeLink === "home" ? "py-2 md:px-6 bg-neutral-900 text-white rounded-md mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-neutral-700 hover:text-white rounded-md mx-2"} onClick={() => setActive("home")} exact href="/">Home</Link>
+              <Link className={activeLink === "home" ? "py-2 md:px-6 bg-neutral-900 text-white rounded-md md:mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-neutral-700 hover:text-white rounded-md md:mx-2"} onClick={() => setActive("home")} exact href="/">Home</Link>
             </li>
             <li >
-              <Link className={activeLink === "about" ? "py-2 md:px-6 bg-neutral-900 text-white rounded-md mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-neutral-700 hover:text-white rounded-md mx-2"} onClick={() => setActive("about")} exact href="/about">About</Link>
+              <Link className={activeLink === "about" ? "py-2 md:px-6 bg-neutral-900 text-white rounded-md md:mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-neutral-700 hover:text-white rounded-md md:mx-2"} onClick={() => setActive("about")} exact href="/about">About</Link>
             </li>
             <li >
-              <Link className={activeLink === "whatson" ? "py-2 md:px-6 bg-neutral-900 text-white rounded-md mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-neutral-700 hover:text-white rounded-md mx-2"} onClick={() => setActive("whatson")}exact href="/whatson">What&apos;s On</Link>
+              <Link className={activeLink === "whatson" ? "py-2 md:px-6 bg-neutral-900 text-white rounded-md md:mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-neutral-700 hover:text-white rounded-md md:mx-2"} onClick={() => setActive("whatson")}exact href="/whatson">What&apos;s On</Link>
             </li>
             <li >
-              <Link className={activeLink === "comingsoon" ? "py-2 md:px-6 bg-neutral-900 text-white rounded-md mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-neutral-700 hover:text-white rounded-md mx-2"} onClick={() => setActive("comingsoon")} exact href="/comingsoon">Coming Soon</Link>
+              <Link className={activeLink === "comingsoon" ? "py-2 md:px-6 bg-neutral-900 text-white rounded-md md:mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-neutral-700 hover:text-white rounded-md md:mx-2"} onClick={() => setActive("comingsoon")} exact href="/comingsoon">Coming Soon</Link>
             </li>
             
           </ul>
@@ -55,7 +60,7 @@ const setActive = (active) => {
 
 
         {/* Login container */}
-        <div className="flex items-end justify-between py-3 md:py-5 md:block w-1/4">
+        <div className="flex items-end justify-between py-3 md:py-5 hidden lg:block w-1/4">
       {user ? (
         <div className="flex items-center gap-4" >
           <Link href="/myAccount" className="py-2 md:px-6 bg-neutral-900 text-white rounded-md mx-2"><FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Link>

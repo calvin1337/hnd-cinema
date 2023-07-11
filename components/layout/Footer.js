@@ -9,17 +9,17 @@ import { faGithub, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-
 const Footer = () => {
   return (
     <footer className=" mt-10">
-      <div className="grid grid-cols-4 grid-rows-1 lg:container gap-x-5 p-5">
-      <div className="col-span-2">
+      <div className="grid grid-cols-1 grid-rows-1 md:container md:grid-cols-4 gap-x-5 p-5 sm:grid-cols-2">
+      <div className="col-span-1 sm:col-span-2">
         <h6>About this project</h6>
         <p>
           This project was built as part of my graded unit for my HND in Software Development. The project was built using Next.js, Tailwind CSS and Firebase.
 
         </p>
       </div>
-      <div className="col-span-1 text-center">
+      <div className="col-span-1 md:text-center">
         <h6>Personal Links</h6>
-        <ul className="flex flex-row gap-3 justify-center">
+        <ul className="flex flex-row gap-3 md:justify-center">
           <li><FontAwesomeIcon className="hover:text-white" icon={faInstagram} size={"2xl"}></FontAwesomeIcon><Link href="https:www.instagram.com"></Link></li>
           <li><FontAwesomeIcon className="hover:text-white" icon={faTwitter} size={"2xl"}></FontAwesomeIcon><Link href="https:www.instagram.com"></Link></li>
           <li><FontAwesomeIcon className="hover:text-white" icon={faGithub} size={"2xl"}></FontAwesomeIcon><Link href="https:www.instagram.com"></Link></li>
