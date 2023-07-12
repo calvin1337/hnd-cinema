@@ -12,6 +12,10 @@ export default function Header() {
         <title>HNCD Cinema</title>
         <meta name="description" content="Cinema Booking App" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="initial-scale=1, viewport-fit=cover, width=device-width"></meta>
+        <meta name="apple-mobile-web-app-capable" content="yes"></meta>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"></meta>
+        <meta name="theme-color" content="#222" />
         <link rel="icon" href="/favicon.ico" />
     </Head>
   )
