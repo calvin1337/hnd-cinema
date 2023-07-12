@@ -9,14 +9,14 @@ import  useAuth  from "@/hooks/AuthContext";
 import { AuthContext } from '@/hooks/AuthContext';
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faRightFromBracket, faBars} from '@fortawesome/free-solid-svg-icons';
+import { faUser, faRightFromBracket, faBars, faTimes} from '@fortawesome/free-solid-svg-icons';
 
 
 
 export default function Navigation(props) {
   
  const [activeLink, setActiveLink] = useState("home");
- const [open, setOpen ] = useState("Close");
+ const [open, setOpen ] = useState(false);
  
  const { user } = React.useContext(AuthContext);
  const { signOut } = useAuth()
@@ -25,19 +25,23 @@ const setActive = (active) => {
     setActiveLink(active);
  }
 
+ const toggleMenu = () => {
+  setOpen(!open)
+ }
 
 
 // COULD ADD ALWAYS AT TOP OF PAGE ON SCROLLING
   return (
-    <nav style={{background:"#222"}}>
+    <nav style={{background:"#222"}} className={`${open ? "h-64" : ""}`}>
       {/* Main container*/}
       <div className="justify-between px-4 mx-auto lg:max-w-7xl items-center flex md:px-8 text-white">
         {/* Logo container */}
-        <div className="flex items-start py-3 md:py-5 md:block w-1/4">
+        <div className="flex items-start py-3 md:py-5 md:block w-1/2 lg:W-1/4">
          HNCD CINEMA
         </div>
-        <div className="lg:hidden h-6 w-6 cursor-pointer">
-        <FontAwesomeIcon size={"xl"} icon={faBars} />          
+        <div className="lg:hidden h-6 w-6 cursor-pointer border border-solid " onClick={toggleMenu}>
+
+        <FontAwesomeIcon className="w-full h-full" icon={open ? faTimes : faBars} />         
         </div>
         {/* Link container */}
         <div className="items-center py-3 md:py-5 w-full hidden lg:block">
@@ -79,8 +83,49 @@ const setActive = (active) => {
         </ul>
       )}
     </div>
+
+
+        
       </div>
-     
+      <div className={`${open ? "flex" : "hidden"} `}>
+        {/* Mobile nav links */}
+      <div className="items-center py-3 md:py-5 w-full block text-center">
+          <ul className="justify-center flex flex-col gap-2">
+            <li>
+              <Link className={activeLink === "home" ? "text-white" : "text-gray-500"} onClick={() => setActive("home")} exact href="/">Home</Link>
+            </li>
+            <li >
+              <Link className={activeLink === "about" ? "text-white" : "text-gray-500"} onClick={() => setActive("about")} exact href="/about">About</Link>
+            </li>
+            <li >
+              <Link className={activeLink === "whatson" ? "text-white" : "text-gray-500"} onClick={() => setActive("whatson")}exact href="/whatson">What&apos;s On</Link>
+            </li>
+            <li >
+              <Link className={activeLink === "comingsoon" ? "text-white" : "text-gray-500"} onClick={() => setActive("comingsoon")} exact href="/comingsoon">Coming Soon</Link>
+            </li>
+            
+          </ul>
+        </div>
+        </div>
+        <div className={`${open ? "flex" : "hidden"} text-white`} >
+        {user ? (
+        <div className="items-center justify-center gap-4 w-full flex" >
+          <Link href="/myAccount" className="py-2 md:px-6 text-white mx-2"><FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Link>
+          <button onClick={signOut} className="py-2 md:px-6 text-center text-red-700 rounded hover:cursor-pointer hover:bg-neutral-900 hover:text-red-500">
+          <FontAwesomeIcon size={"xl"} icon={faRightFromBracket} />          
+          </button>
+        </div>
+      ) : (
+        <ul className="items-center justify-center gap-4 flex w-full ">
+          <li onClick={() => props.toggle("login")} className="text-green-600 font-bold">
+            Login
+          </li>
+          <li onClick={() => props.toggle("reg")} className="text-blue-600 font-bold">
+            Register
+          </li>
+        </ul>
+      )}
+        </div>
     </nav>
   )
 }
