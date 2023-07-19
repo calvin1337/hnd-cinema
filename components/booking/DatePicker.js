@@ -51,12 +51,12 @@ const DatePicker = (props) => {
     <div className="text-center">
       {/* Day picker */}
 
-      <div className="gap-5 flex flex-row justify-center mt-5">
+      <div className="gap-1 lg:gap-5 flex flex-row justify-center mt-5">
       {days && days.map((day, index) => (
   <button
   key={index}
-  className={active === day ? "text-white" : "text-gray-500"}
-
+  className={active === day ? "text-white text-xs sm:text-lg" : "text-gray-500 text-xs sm:text-lg"}
+      
   onClick={() => selectDay(day)}
 >
   {day}

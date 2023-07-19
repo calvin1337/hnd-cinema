@@ -36,12 +36,12 @@ const setActive = (active) => {
       {/* Main container*/}
       <div className="justify-between px-4 mx-auto lg:max-w-7xl items-center flex md:px-8 text-white">
         {/* Logo container */}
-        <div className="flex items-start py-3 md:py-5 md:block w-1/2 lg:W-1/4">
+        <div className="flex items-start py-4 md:py-5 md:block w-1/2 lg:W-1/4">
          HNCD CINEMA
         </div>
-        <div className="lg:hidden h-6 w-6 cursor-pointer border border-solid " onClick={toggleMenu}>
+        <div className="lg:hidden h-6 w-6 cursor-pointer" onClick={toggleMenu}>
 
-        <FontAwesomeIcon className="w-full h-full" icon={open ? faTimes : faBars} />         
+        <FontAwesomeIcon className="w-full h-full" size={"xl"} icon={open ? faTimes : faBars} />         
         </div>
         {/* Link container */}
         <div className="items-center py-3 md:py-5 w-full hidden lg:block">
@@ -64,7 +64,7 @@ const setActive = (active) => {
 
 
         {/* Login container */}
-        <div className="flex items-end justify-between py-3 md:py-5 hidden lg:block w-1/4">
+        <div className="items-end justify-between py-3 md:py-5 hidden lg:block w-1/4">
       {user ? (
         <div className="flex items-center gap-4" >
           <Link href="/myAccount" className="py-2 md:px-6 bg-neutral-900 text-white rounded-md mx-2"><FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Link>

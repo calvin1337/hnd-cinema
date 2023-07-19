@@ -31,7 +31,7 @@ const ImageCarousel = () => {
       >
         <div className="h-full flex justify-center items-center">
           <img
-            src="https://images.pexels.com/photos/7234238/pexels-photo-7234238.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            src="https://via.placeholder.com/1920x1735"
             alt=""
             className="w-full h-full object-cover"
           />
