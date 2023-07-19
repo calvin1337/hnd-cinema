@@ -27,11 +27,19 @@ const Layout = ({children}) => {
 const [showModal, setShowModal] = useState(false);
 const [activeModal, setActiveModal] = useState("login");
 
+const [showNav, setShowNav] = useState(false)
+
+
 const toggleModal = (e) => {
     setShowModal(!showModal);
     setActiveModal(e);
 }
 
+const toggleNav = (e) => {
+
+  setShowNav(!showNav)
+
+}
 
   return(
     <AuthContextProvider>
@@ -39,7 +47,7 @@ const toggleModal = (e) => {
      
         <Header />
         <Modal display={activeModal} show={showModal} toggle={toggleModal}/>
-        <Navigation toggle={toggleModal} />      
+        <Navigation toggle={toggleModal} navToggle={toggleNav} show={showNav} />      
         {children}
         <Footer />        
     </div>

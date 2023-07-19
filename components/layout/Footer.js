@@ -8,8 +8,8 @@ import { faGithub, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-
 
 const Footer = () => {
   return (
-    <footer className=" mt-10">
-      <div className="grid grid-cols-1 grid-rows-1 md:container md:grid-cols-4 gap-x-5 p-5 sm:grid-cols-2">
+    <footer className="mt-10">
+      <div className="grid grid-cols-1 grid-rows-1 md:container md:grid-cols-4 gap-x-5 p-5 sm:grid-cols-2 gap-4">
       <div className="col-span-1 sm:col-span-2">
         <h6>About this project</h6>
         <p>
@@ -28,7 +28,7 @@ const Footer = () => {
       </div>
       <div className="col-span-1">
         <h6>Links</h6>
-        <ul >
+        <ul>
           <li><Link className="hover:text-white" href="/">Home</Link></li>
           <li><Link className="hover:text-white" href="/about">About</Link></li>
           <li><Link className="hover:text-white" href="/whatson">Whats on</Link></li>

@@ -4,7 +4,7 @@
 
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import  useAuth  from "@/hooks/AuthContext";
 import { AuthContext } from '@/hooks/AuthContext';
 import React from "react";
@@ -16,32 +16,36 @@ import { faUser, faRightFromBracket, faBars, faTimes} from '@fortawesome/free-so
 export default function Navigation(props) {
   
  const [activeLink, setActiveLink] = useState("home");
- const [open, setOpen ] = useState(false);
  
  const { user } = React.useContext(AuthContext);
  const { signOut } = useAuth()
 
 const setActive = (active) => {
     setActiveLink(active);
+    
  }
 
- const toggleMenu = () => {
-  setOpen(!open)
+ const setActiveMobile = (active) => {
+  setActiveLink(active);
+  props.navToggle()
  }
+
+
+ 
 
 
 // COULD ADD ALWAYS AT TOP OF PAGE ON SCROLLING
   return (
-    <nav style={{background:"#222"}} className={`${open ? "h-64" : ""}`}>
+    <nav style={{background:"#222"}} className={`${props.show ? "h-64 p-5" : "p-5"}`} >
       {/* Main container*/}
-      <div className="justify-between px-4 mx-auto lg:max-w-7xl items-center flex md:px-8 text-white">
+      <div className="justify-between px-4 mx-auto lg:max-w-7xl items-center flex md:px-8 text-white"  >
         {/* Logo container */}
         <div className="flex items-start py-4 md:py-5 md:block w-1/2 lg:W-1/4">
          HNCD CINEMA
         </div>
-        <div className="lg:hidden h-6 w-6 cursor-pointer" onClick={toggleMenu}>
+        <div className="lg:hidden h-6 w-6 cursor-pointer" onClick={props.navToggle}>
 
-        <FontAwesomeIcon className="w-full h-full" size={"xl"} icon={open ? faTimes : faBars} />         
+        <FontAwesomeIcon className="w-full h-full" size={"xl"} icon={props.show ? faTimes : faBars} />         
         </div>
         {/* Link container */}
         <div className="items-center py-3 md:py-5 w-full hidden lg:block">
@@ -87,27 +91,27 @@ const setActive = (active) => {
 
         
       </div>
-      <div className={`${open ? "flex" : "hidden"} `}>
+      <div className={`${props.show ? "flex" : "hidden"} `}>
         {/* Mobile nav links */}
       <div className="items-center py-3 md:py-5 w-full block text-center">
           <ul className="justify-center flex flex-col gap-2">
             <li>
-              <Link className={activeLink === "home" ? "text-white" : "text-gray-500"} onClick={() => setActive("home")} exact href="/">Home</Link>
+              <Link className={activeLink === "home" ? "text-white" : "text-gray-500"} onClick={() => setActiveMobile("home")} exact href="/">Home</Link>
             </li>
             <li >
-              <Link className={activeLink === "about" ? "text-white" : "text-gray-500"} onClick={() => setActive("about")} exact href="/about">About</Link>
+              <Link className={activeLink === "about" ? "text-white" : "text-gray-500"} onClick={() => setActiveMobile("about")} exact href="/about">About</Link>
             </li>
             <li >
-              <Link className={activeLink === "whatson" ? "text-white" : "text-gray-500"} onClick={() => setActive("whatson")}exact href="/whatson">What&apos;s On</Link>
+              <Link className={activeLink === "whatson" ? "text-white" : "text-gray-500"} onClick={() => setActiveMobile("whatson")}exact href="/whatson">What&apos;s On</Link>
             </li>
             <li >
-              <Link className={activeLink === "comingsoon" ? "text-white" : "text-gray-500"} onClick={() => setActive("comingsoon")} exact href="/comingsoon">Coming Soon</Link>
+              <Link className={activeLink === "comingsoon" ? "text-white" : "text-gray-500"} onClick={() => setActiveMobile("comingsoon")} exact href="/comingsoon">Coming Soon</Link>
             </li>
             
           </ul>
         </div>
         </div>
-        <div className={`${open ? "flex" : "hidden"} text-white`} >
+        <div className={`${props.show ? "flex" : "hidden"} text-white`} >
         {user ? (
         <div className="items-center justify-center gap-4 w-full flex" >
           <Link href="/myAccount" className="py-2 md:px-6 text-white mx-2"><FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Link>
