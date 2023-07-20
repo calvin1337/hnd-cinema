@@ -54,7 +54,7 @@ const Comingsoon = () => {
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, minus?</p>
       </div>
       <div className="title-container text-center">
-        <h1>Coming Soon</h1>
+        <h1 className="text-5xl">Coming Soon</h1>
       </div>
       <div className="flex flex-col items-center">
       {loading ? (

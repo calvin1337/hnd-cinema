@@ -36,7 +36,7 @@ const setActive = (active) => {
 
 // COULD ADD ALWAYS AT TOP OF PAGE ON SCROLLING
   return (
-    <nav style={{background:"#222"}} className={`${props.show ? "h-64 p-5" : "p-5"}`} >
+    <nav style={{background:"#222"}} className={`${props.show ? "h-64 p-5" : "p-5"}`}>
       {/* Main container*/}
       <div className="justify-between px-4 mx-auto lg:max-w-7xl items-center flex md:px-8 text-white"  >
         {/* Logo container */}
