@@ -49,7 +49,7 @@ const ViewBookings = () => {
       {bookings.map((booking) => (
         <div key={booking.bookingID} className="px-4 py-3 border-b border-gray-200">
           <div className="flex justify-between">
-            <div className="w-1/4">{booking.showingID}</div>
+            <div className="w-1/4">{booking.bookingID}</div>
             <div className="w-1/4">{booking.seats.join(', ')}</div>
             <div className="w-1/4">{booking.title}</div>
             <div className="w-1/4">{booking.time}</div>
