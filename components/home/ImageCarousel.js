@@ -21,12 +21,12 @@ const ImageCarousel = () => {
     <Swiper
       navigation={true}
       modules={[Navigation]}
-      className="mySwiper w-screen"
+      className="mySwiper w-full"
       style={{ height: 'calc(100vh - 80px)'}}
     >
       {/* Slide 1 */}
       <SwiperSlide
-        className="w-screen h-full"
+        className="w-full h-full"
         style={{ width: '100%', height: '100%' }}
       >
         <div className="h-full flex justify-center items-center">
@@ -40,7 +40,7 @@ const ImageCarousel = () => {
 
       {/* Slide 2 */}
       <SwiperSlide
-        className="w-screen h-full"
+        className="w-full h-full"
         style={{ width: '100%', height: '100%' }}
       >
         <div className="h-full flex justify-center items-center">
@@ -54,7 +54,7 @@ const ImageCarousel = () => {
 
       {/* Slide 3 */}
       <SwiperSlide
-        className="w-screen h-full"
+        className="w-full h-full"
         style={{ width: '100%', height: '100%' }}
       >
         <div className="h-full flex justify-center items-center">

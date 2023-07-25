@@ -20,13 +20,23 @@ const Modal = (props) => {
         toggle("");
       }
     };
-    document.addEventListener("click", closeModal);
-    return () => document.removeEventListener("click", closeModal);
-  });
+    
+    if (show) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    document.addEventListener('click', closeModal);
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+      document.removeEventListener('click', closeModal);
+    };
+  }, [show, toggle]);
 
   return (
-    <div className="modal" style={{ display: show ? "" : "none" }} ref={modalRef}>
-      <div className="modal-content">
+    <div className="modal" style={{ display: show ? 'block' : 'none', position: 'fixed' }} ref={modalRef}>
+      <div className="modal-content w-80 h-auto md:w-96 " >
         <button onClick={() => toggle("")} className="closeBtn">
           <FontAwesomeIcon icon={faTimes} size="2xl" color="black" />
         </button>

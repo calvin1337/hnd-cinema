@@ -36,11 +36,11 @@ const setActive = (active) => {
 
 // COULD ADD ALWAYS AT TOP OF PAGE ON SCROLLING
   return (
-    <nav style={{background:"#222"}} className={`${props.show ? "h-64 p-5" : "p-5"}`}>
+    <nav style={{background:"#222"}} className={`${props.show ? "h-80 p-5" : "p-5"}`}>
       {/* Main container*/}
       <div className="justify-between px-4 mx-auto lg:max-w-7xl items-center flex md:px-8 text-white"  >
         {/* Logo container */}
-        <div className="flex items-start py-4 md:py-5 md:block w-1/2 lg:W-1/4">
+        <div className="flex items-start py-4 md:py-5 md:block w-1/2 lg:w-1/5">
          HNCD CINEMA
         </div>
         <div className="lg:hidden h-6 w-6 cursor-pointer" onClick={props.navToggle}>
@@ -49,7 +49,7 @@ const setActive = (active) => {
         </div>
         {/* Link container */}
         <div className="items-center py-3 md:py-5 w-full hidden lg:block">
-          <ul className="justify-center md:flex">
+          <ul className="justify-center lg:flex">
             <li>
               <Link className={activeLink === "home" ? "py-2 md:px-6 bg-neutral-900 text-white rounded-md md:mx-2" : "py-2 md:px-6 text-gray-300 hover:bg-neutral-700 hover:text-white rounded-md md:mx-2"} onClick={() => setActive("home")} exact href="/">Home</Link>
             </li>
@@ -68,7 +68,7 @@ const setActive = (active) => {
 
 
         {/* Login container */}
-        <div className="items-end justify-between py-3 md:py-5 hidden lg:block w-1/4">
+        <div className="items-end justify-between py-3 md:py-5 hidden lg:block w-1/5">
       {user ? (
         <div className="flex items-center gap-4" >
           <Link href="/myAccount" className="py-2 md:px-6 bg-neutral-900 text-white rounded-md mx-2"><FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Link>
