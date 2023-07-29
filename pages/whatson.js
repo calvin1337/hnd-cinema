@@ -71,13 +71,10 @@ const Whatson = () => {
   return (
     <div className="text-white">
       <div className="mb-10 mt-10 text-center">
-        <h1>Welcome</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, minus?</p>
+      <h1 className="text-5xl">Whats on</h1>        
+      <p className="pt-5">Select a movie and book your tickets!</p>
       </div>
-      <div className="title-container text-center">
-        <h1>Whats on</h1>
-      </div>
-      <div></div>
+      
       <DatePicker selectDay={(e) => daySelected(e)} active={active} day={day} />
       <div className="flex flex-col items-center">
         {loading ? (
@@ -93,6 +90,9 @@ const Whatson = () => {
                     movieTitle={movieShowings.movieData.title}
                     showings={filteredShowings.sort((a, b) => a.day.localeCompare(b.day))}
                     img={movieShowings.movieData.img}
+                    release={movieShowings.movieData.release}
+                    age={movieShowings.movieData.age}
+                    runtime={movieShowings.movieData.time}
                   />
                 );
               } else {

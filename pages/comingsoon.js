@@ -50,12 +50,10 @@ const Comingsoon = () => {
   return (
     <div className="text-white">
       <div className="mb-10 mt-10 text-center">
-        <h1>Welcome</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, minus?</p>
+      <h1 className="text-5xl">Coming Soon</h1>        
+      <p className="pt-5 text-gray-200">This is the list of movies coming soon to the cinema, upvote movies you're most excited for!</p>
       </div>
-      <div className="title-container text-center">
-        <h1 className="text-5xl">Coming Soon</h1>
-      </div>
+     
       <div className="flex flex-col items-center">
       {loading ? (
       <Spinner />

@@ -63,12 +63,11 @@ const BookingPage = () => {
   
   const confirmBooking = (x) => {
     setCompleteBooking(true);
-    console.log(x)
   } 
 
   const createBooking  = async (seats) => {
     setBooking(seats);
-    console.log(seats)
+  
   }
 
   function handleClick() {
@@ -90,7 +89,7 @@ const BookingPage = () => {
 
   <div className="text-center w-full flex flex-col items-center" style={{perspective:"1000px"}}>
     {/* Booking Info */}
-    <div className="mt-10">
+    <div className="mt-10 text-white font-bold">
       <h2>Booking Info</h2>
       <h3>{showing.title}</h3>
       <h3>Screen: 4</h3>
@@ -106,7 +105,7 @@ const BookingPage = () => {
     <Seats userSelectedSeats={createBooking} showingID={slug}/>
 
     <div className="user-booking">
-    <h3>Seats selected: {booking.join(",")}</h3>
+    <h3 className='text-white font-bold'>Seats selected: {booking.join(",")}</h3>
     </div>
 
     </>

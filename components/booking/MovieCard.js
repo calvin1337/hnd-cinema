@@ -10,31 +10,32 @@ const MovieCard = (props) => {
 
   return (
     <div
-      className="container m-auto grid grid-cols-1 lg:grid-cols-3 gap-4 lg:justify-center"
+      className="container m-auto grid grid-cols-1 lg:grid-cols-3 gap-4 lg:justify-center mt-5"
       style={{ borderTop: "solid 2px #ddd" }}
     >
       <div className="flex justify-center flex-col pb-5">
-        <div className="lg:w-4/5 h-4/5 text-center w-full p-5 lg:p-0">
+        <div className="lg:w-4/5 h-4/5 text-center w-full p-5 lg:p-0 " >
           <img 
             src={props.img}
             alt=""
             width={"100%"}
             height={400}
+            className="rounded-lg"
           />
+        
         </div>
+        
       </div>
       <div className="flex flex-col justify-center gap-3 p-4">
-        <h1>{movieTitle}</h1>
-        <h1>Release Date: 3rd March 2023</h1>
-        <p>Age rating:</p>
-        <p>Run time:</p>
+        <h1 className="text-lg font-bold">{movieTitle}</h1>
+        <h1>Release Date: {props.release}</h1>
+        <p>Age rating: {props.age}</p>
+        <p>Run time: {props.runtime}</p>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Praesentium molestiae, ea illo aliquam mollitia veniam reprehenderit?
-          Aut fugiat sit debitis?
+          {props.desc}
         </p>
         <div className="showing mt-5">
-        <h3>Showing Times</h3>
+        <h3 className="text-lg font-bold">Showing Times</h3>
           <ul className="flex flex-row gap-5">
            
             {/* Display available showings */}

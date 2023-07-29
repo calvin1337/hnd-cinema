@@ -79,7 +79,7 @@ export const Payment = (props) => {
 
   return (
     <div>
-      {/* {bookingSuccess && <p>Booking successful! your booking code: {bookingCode}</p>} */}
+      {bookingSuccess && <p>Booking successful! your booking code: {bookingCode}</p>}
       
     </div>
   );

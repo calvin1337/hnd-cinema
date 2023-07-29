@@ -49,9 +49,11 @@ const DatePicker = (props) => {
 
   return (
     <div className="text-center">
+            <h1 className="mt-5 mb-5 text-xl">{displayDate}</h1>
+
       {/* Day picker */}
 
-      <div className="gap-1 lg:gap-5 flex flex-row justify-center mt-5">
+      <div className="gap-1 lg:gap-5 flex flex-row justify-center mt-5 mb-5">
       {days && days.map((day, index) => (
   <button
   key={index}
@@ -63,7 +65,6 @@ const DatePicker = (props) => {
 </button>
 ))}
       </div>
-      <h1 className="mt-5">{displayDate}</h1>
     </div>
   );
 };
