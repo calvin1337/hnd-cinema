@@ -10,7 +10,7 @@ const HomeComing = () => {
   return (
     <div>
        <div className="pt-10 pb-10">
-       <h1 class="mb-4 text-left text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl dark:text-white p-10">Coming Soon</h1>
+       <h1 className="mb-4 text-left text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl dark:text-white p-10">Coming Soon</h1>
        <div className="container m-auto grid grid-cols-1 md:grid-cols-3 gap-4">
         <HomeMovieCard 
         title={"Guardians of the Galaxy Vol. 3"}
